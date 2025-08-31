@@ -1,3 +1,17 @@
 jupyter-book
 matplotlib
 numpy
+ghp-import
+nbformat
+nbconvert
+
+pandas
+seaborn
+sqlalchemy
+python-dotenv
+scikit-learn
+cryptography
+pymysql
+psycopg2-binary
+
+ydata-profiling
