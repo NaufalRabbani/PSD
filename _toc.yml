@@ -5,6 +5,5 @@ format: jb-book
 root: Profil
 chapters:
   - file: bab-1_bu
-    sections:
-      - file: bab-2_du
-        title: Eksplorasi Data
+  - file: bab-2_du
+    title: Eksplorasi Data
