@@ -6,5 +6,5 @@ root: Profil
 chapters:
   - file: bab-1_bu
   - file: bab-2_du
-    section: 
+    sections: 
     - file: Eksplorasi Data
