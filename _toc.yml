@@ -6,4 +6,6 @@ root: Profil
 chapters:
   - file: bab-1_bu
   - file: bab-2_du
-    title: Eksplorasi Data
+    section: 
+    - file: Eksplorasi Data
+    - file: Persiapan Data
