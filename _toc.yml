@@ -8,3 +8,4 @@ chapters:
   - file: bab-2_du
   - file: bab-3_dp
   - file: time_series
+  - file: time-series_autocorr-based
