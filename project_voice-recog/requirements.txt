@@ -1,0 +1,7 @@
+streamlit
+librosa
+numpy
+soundfile
+tensorflow==2.14.0
+pydub
+scikit-learn
