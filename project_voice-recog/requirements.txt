@@ -1,8 +1,7 @@
 streamlit
-numpy
-tensorflow-cpu==2.16.1
-librosa
+numpy==1.23.5
+librosa==0.10.1
 soundfile
-scikit-learn
 pydub
-protobuf<4
+scikit-learn
+joblib

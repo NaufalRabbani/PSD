@@ -1,30 +1,29 @@
 import streamlit as st
 import numpy as np
 import librosa
-from tensorflow.keras.models import load_model
 from pydub import AudioSegment
 import tempfile
+import joblib
 
-MODEL_PATH = "project_voice-recog/voice_cnn_model.h5"
-model = load_model(MODEL_PATH)
+MODEL_PATH = "voice_svm_model.pkl"
+model = joblib.load(MODEL_PATH)
 
 SAMPLE_RATE = 22050
 DURATION = 1.5
 N_MFCC = 40
 SAMPLES = int(SAMPLE_RATE * DURATION)
 
-st.title("🎤 Voice Recognition: Buka / Tutup")
+st.title("🎤 Voice Recognition: Buka / Tutup (SVM Version)")
 
 uploaded_file = st.file_uploader("Upload file suara", type=["wav", "mp3", "m4a"])
 
-
 def preprocess_audio(uploaded):
-    # Simpan ke file sementara (fix untuk mp3/m4a)
+    # Simpan ke file sementara
     with tempfile.NamedTemporaryFile(delete=False) as tmp:
         tmp.write(uploaded.read())
         file_path = tmp.name
 
-    # Convert ke wav jika format bukan wav
+    # Convert jika bukan WAV
     if uploaded.type != "audio/wav":
         audio = AudioSegment.from_file(file_path)
         wav_temp = tempfile.NamedTemporaryFile(delete=False, suffix=".wav")
@@ -39,18 +38,15 @@ def preprocess_audio(uploaded):
         y = y[:SAMPLES]
 
     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=N_MFCC)
-    mfcc = mfcc.T
-    mfcc = np.expand_dims(mfcc, axis=0)
+    mfcc = mfcc.flatten()
 
-    return mfcc
-
+    return mfcc.reshape(1, -1)
 
 if uploaded_file:
     st.audio(uploaded_file)
 
     features = preprocess_audio(uploaded_file)
-    pred = model.predict(features)
-    label = "BUKA" if pred[0][0] > 0.5 else "TUTUP"
+    pred = model.predict(features)[0]
 
     st.subheader("🔊 Prediksi:")
-    st.success(label)
+    st.success("BUKA" if pred == 1 else "TUTUP")
