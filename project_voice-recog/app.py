@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 from pydub import AudioSegment
 import tempfile
 
-MODEL_PATH = "voice_cnn_model.h5"
+MODEL_PATH = "project_voice-recog/voice_cnn_model.h5"
 model = load_model(MODEL_PATH)
 
 SAMPLE_RATE = 22050
