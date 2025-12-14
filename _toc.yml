@@ -9,3 +9,4 @@ chapters:
   - file: bab-3_dp
   - file: time_series
   - file: time-series_autocorr-based
+  - file: project_psd
