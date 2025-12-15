@@ -1,0 +1,51 @@
+Traceback (most recent call last):
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\jupyter_cache\executors\utils.py", line 58, in single_nb_execution
+    executenb(
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 1319, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VICTUS\AppData\Roaming\Python\Python312\site-packages\jupyter_core\utils\__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\asyncio\base_events.py", line 684, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "C:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\nbclient\client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Load training data
+data_train, meta_train = arff.loadarff("/content/drive/MyDrive/dataset/ElectricDeviceDetection/ElectricDeviceDetection_TRAIN.arff")
+df_train = pd.DataFrame(data_train)
+
+# Load testing data
+data_test, meta_test = arff.loadarff("/content/drive/MyDrive/dataset/ElectricDeviceDetection/ElectricDeviceDetection_TEST.arff")
+df_test = pd.DataFrame(data_test)
+
+print("Shape Train:", df_train.shape)
+print("Shape Test :", df_test.shape)
+
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 2[39m
+[32m      1[39m [38;5;66;03m# Load training data[39;00m
+[32m----> [39m[32m2[39m data_train, meta_train = [43marff[49m[43m.[49m[43mloadarff[49m[43m([49m[33;43m"[39;49m[33;43m/content/drive/MyDrive/dataset/ElectricDeviceDetection/ElectricDeviceDetection_TRAIN.arff[39;49m[33;43m"[39;49m[43m)[49m
+[32m      3[39m df_train = pd.DataFrame(data_train)
+[32m      5[39m [38;5;66;03m# Load testing data[39;00m
+
+[36mFile [39m[32m~\AppData\Local\Programs\Python\Python312\Lib\site-packages\scipy\io\arff\_arffread.py:800[39m, in [36mloadarff[39m[34m(f)[39m
+[32m    798[39m     ofile = f
+[32m    799[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m800[39m     ofile = [38;5;28;43mopen[39;49m[43m([49m[43mf[49m[43m)[49m
+[32m    801[39m [38;5;28;01mtry[39;00m:
+[32m    802[39m     [38;5;28;01mreturn[39;00m _loadarff(ofile)
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: '/content/drive/MyDrive/dataset/ElectricDeviceDetection/ElectricDeviceDetection_TRAIN.arff'
+

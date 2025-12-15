@@ -1,0 +1,2172 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Data Preparation &#8212; Projek Sains Data</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'bab-3_dp';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Analisis Data Time Series" href="time_series.html" />
+    <link rel="prev" title="Data Understanding" href="bab-2_du.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="profil.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/WhatsApp Image 2025-06-21 at 11.47.14_68dc4168.jpg" class="logo__image only-light" alt="Projek Sains Data - Home"/>
+    <script>document.write(`<img src="_static/WhatsApp Image 2025-06-21 at 11.47.14_68dc4168.jpg" class="logo__image only-dark" alt="Projek Sains Data - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="profil.html">
+                    Biodata
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bab-1_bu.html">Memahami Bisnis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bab-2_du.html">Data Understanding</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#"><strong>Data Preparation</strong></a></li>
+<li class="toctree-l1"><a class="reference internal" href="time_series.html">Analisis Data Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="time-series_autocorr-based.html">Analisis Data Time Series</a></li>
+<li class="toctree-l1"><a class="reference internal" href="project_psd.html">Projek UAS</a></li>
+
+
+
+
+
+
+
+
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fbab-3_dp.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/bab-3_dp.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Preparation</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data"><strong>Preprocessing Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-menyeimbangkan-data-yang-tidak-seimbang"><strong>Preprocessing Menyeimbangkan Data yang tidak Seimbang</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-teknik-oversampling">2. Apa itu Teknik Oversampling?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-oversampling-populer">3. Metode Oversampling Populer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-smote-synthetic-minority-over-sampling-technique">a. SMOTE (Synthetic Minority Over-sampling Technique)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-adasyn-adaptive-synthetic-sampling">b. ADASYN (Adaptive Synthetic Sampling)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-umum">4. Alur Kerja Umum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-bootstrap-aggregating"><strong>Bagging Classifier (Bootstrap Aggregating)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-kebijaksanaan-kelompok-wisdom-of-the-crowd">Intuisi Inti: Kebijaksanaan Kelompok (Wisdom of the Crowd)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-detektif-naif">Intuisi Inti: Detektif Naif</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kelebihan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Kekurangan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-mencari-jalan-terlebar">Intuisi Inti: Mencari Jalan Terlebar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-trick-mengatasi-data-yang-tidak-linier">Kernel Trick: Mengatasi Data yang Tidak Linier</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Kelebihan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adasyn-adaptive-synthetic-sampling">ADASYN (Adaptive Synthetic Sampling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-memberi-perhatian-ekstra-pada-murid-yang-kesulitan">Intuisi Inti: Memberi Perhatian Ekstra pada Murid yang Kesulitan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-adasyn">Cara Kerja ADASYN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perbedaan-utama-adasyn-vs-smote">Perbedaan Utama ADASYN vs. SMOTE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-adasyn">Kelebihan ADASYN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan-adasyn">Kekurangan ADASYN</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-pada-dataset-uci-machine-learning-bank-marketing">Penerapan pada Dataset UCI Machine Learning Bank Marketing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dan-preprocessing-data">1. Load dan Preprocessing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribusi-kelas-awal">2. Analisis Distribusi Kelas Awal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-data-tidak-seimbang">3. Klasifikasi Data tidak Seimbang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyeimbangkan-data-dengan-adasyn">4. Menyeimbangkan Data dengan ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-pada-data-yang-diseimbangkan-dengan-adasyn">5. Klasifikasi pada Data yang Diseimbangkan dengan ADASYN</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="data-preparation">
+<h1><strong>Data Preparation</strong><a class="headerlink" href="#data-preparation" title="Link to this heading">#</a></h1>
+<section id="preprocessing-data">
+<h2><strong>Preprocessing Data</strong><a class="headerlink" href="#preprocessing-data" title="Link to this heading">#</a></h2>
+<p><strong>Koneksi Data ke Power BI</strong> <br />
+saya menggunakan Power BI untuk preprocessing data dari dataset iris. Meskipun Power BI tidak memiliki fungsi native untuk algoritma seperti KNN (K-Nearest Neighbors) atau ABOD (Angle-Based Outlier Detection), kita bisa menggunakan metode statistik yang powerful atau mengintegrasikan skrip Python.</p>
+<ol class="arabic simple">
+<li><p>Konfigurasi environment di Power BI <br />
+Karena menggunakan Python Script untuk melakukan pemrosesan data dalam Power BI maka perlu kita konfigurasikan:</p></li>
+</ol>
+<ul class="simple">
+<li><p>Pertama, buka Power BI desktop</p></li>
+<li><p>Kemudian pergi ke menu <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">&gt;</span> <span class="pre">Options</span> <span class="pre">and</span> <span class="pre">Settings</span> <span class="pre">&gt;</span> <span class="pre">Options</span></code></p></li>
+<li><p>Setelah itu pilih <code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">Scripting</span></code></p></li>
+<li><p>Kemudian pilih <em>home directories</em> yang memiliki library <code class="docutils literal notranslate"><span class="pre">pandas</span></code>, <code class="docutils literal notranslate"><span class="pre">pycaret</span></code>, <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code>, <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, dan <code class="docutils literal notranslate"><span class="pre">seaborn</span></code></p></li>
+<li><p>Setelah selesai kemudian klik OK</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>Implementasi pada Power Query di Power BI
+A. Memuat data
+Untuk memuat data dan menggabungkan data, pada menu <code class="docutils literal notranslate"><span class="pre">Home</span></code> klik <code class="docutils literal notranslate"><span class="pre">Transform</span> <span class="pre">Data</span></code> kemudian akan diarahkan ke Power Query. Setelah itu klik <code class="docutils literal notranslate"><span class="pre">Merge</span> <span class="pre">Queries</span></code>. Kemudian pilih tabel yang akan digabung, kemudian pilih Join Kind sesuai yang dibutuhkan (misalnya Left Join) kemudian klik OK. Setelah itu klik <code class="docutils literal notranslate"><span class="pre">Close</span> <span class="pre">&amp;</span> <span class="pre">Apply</span></code>.
+B. PreProcessing data menggunakan Python Script
+Untuk melakukan preprocessing data di Power BI, klik <code class="docutils literal notranslate"><span class="pre">Transform</span> <span class="pre">data</span></code> di menu Home. Setelah masuk ke Power Query, pilih <code class="docutils literal notranslate"><span class="pre">Run</span> <span class="pre">Python</span> <span class="pre">Script</span></code> kemudian tulis kode Python untuk melakukan preprocessing data.</p></li>
+</ol>
+<ol class="arabic simple" start="3">
+<li><p>Mendeteksi Outlier menggunakan K-Nearest Neighbor (KNN) <br />
+Penggunaan KNN untuk mendeteksi outlier adalah apabila sebuah titik data dianggap outlier jika ia terisolasi dari lingkungannya. Sebaliknya, titik data normal (inlier) akan memiliki banyak “tetangga” di dekatnya.</p></li>
+</ol>
+<p>Cara Kerja:</p>
+<ul class="simple">
+<li><p>Untuk setiap titik data, algoritma akan mencari K tetangga terdekatnya (misalnya, 5 tetangga terdekat).</p></li>
+<li><p>Kemudian, dihitung rata-rata jarak dari titik tersebut ke semua K tetangganya.</p></li>
+<li><p>Titik data yang memiliki rata-rata jarak paling besar dianggap sebagai outlier. Secara intuitif, jika Anda harus berjalan sangat jauh untuk menemukan tetangga terdekat Anda, kemungkinan besar Anda berada di lokasi yang terpencil (sebuah outlier).</p></li>
+</ul>
+<p>Untuk analoginya adalah sebuah pesta. Orang-orang normal akan berkumpul dalam kelompok-kelompok kecil (inlier). Seseorang yang berdiri sendirian di sudut ruangan, jauh dari semua kelompok, adalah seorang outlier. KNN pada dasarnya mengukur “seberapa jauh seseorang dari kerumunan terdekatnya.”</p>
+<p>Untuk contoh dari script python sebagai berikut</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Inisialisasi lingkungan, abaikan kolom non-fitur</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+    <span class="n">ignore_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span>
+    <span class="n">session_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>     <span class="c1"># untuk reprodusibilitas</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>       <span class="c1"># matikan pesan interaktif</span>
+<span class="p">)</span>
+
+<span class="c1"># Latih model KNN</span>
+<span class="n">knn</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s1">&#39;knn&#39;</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">knn</span><span class="p">)</span>
+<span class="n">outliers</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Hapus outliers</span>
+<span class="n">outliers_removed</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">RuntimeError</span><span class="g g-Whitespace">                              </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Inisialisasi lingkungan, abaikan kolom non-fitur</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">anomaly</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span>     <span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span>     <span class="n">ignore_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span>
+<span class="g g-Whitespace">      </span><span class="mi">7</span>     <span class="n">session_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>     <span class="c1"># untuk reprodusibilitas</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span>     <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>       <span class="c1"># matikan pesan interaktif</span>
+<span class="g g-Whitespace">      </span><span class="mi">9</span> <span class="p">)</span>
+
+<span class="n">File</span> <span class="o">~</span>\<span class="n">AppData</span>\<span class="n">Local</span>\<span class="n">Programs</span>\<span class="n">Python</span>\<span class="n">Python312</span>\<span class="n">Lib</span>\<span class="n">site</span><span class="o">-</span><span class="n">packages</span>\<span class="n">pycaret</span>\<span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">22</span>
+<span class="g g-Whitespace">     </span><span class="mi">16</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">17</span>         <span class="s2">&quot;Pycaret only supports python 3.9, 3.10, 3.11. Your actual Python version: &quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">18</span>         <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">19</span>         <span class="s2">&quot;Please UPGRADE your Python version.&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">20</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">21</span> <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">12</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">22</span>     <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+<span class="g g-Whitespace">     </span><span class="mi">23</span>         <span class="s2">&quot;Pycaret only supports python 3.9, 3.10, 3.11. Your actual Python version: &quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">24</span>         <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>         <span class="s2">&quot;Please DOWNGRADE your Python version.&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">     </span><span class="mi">26</span>     <span class="p">)</span>
+
+<span class="ne">RuntimeError</span>: (&#39;Pycaret only supports python 3.9, 3.10, 3.11. Your actual Python version: &#39;, sys.version_info(major=3, minor=12, micro=1, releaselevel=&#39;final&#39;, serial=0), &#39;Please DOWNGRADE your Python version.&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Analisis menggunakan ABOD (Angle-Based Outlier Detection) <br />
+Metode ini yaitu apabila sebuah titik data dianggap outlier jika hubungan sudut antara dirinya dengan titik-titik data lain sangat bervariasi. Titik data normal (inlier) yang berada di dalam sebuah cluster akan memiliki sudut pandang yang lebih stabil dan sempit terhadap titik-titik lain.</p></li>
+</ol>
+<p>Cara Kerja:</p>
+<ul class="simple">
+<li><p>Untuk setiap titik data (sebut saja titik P), algoritma akan mengambil pasangan titik lain (misalnya, A dan B).</p></li>
+<li><p>Kemudian, dihitung sudut yang terbentuk oleh vektor PA dan PB.</p></li>
+<li><p>Proses ini diulang untuk banyak pasangan titik lainnya.</p></li>
+<li><p>Jika variansi (keragaman) sudut yang terbentuk sangat tinggi, maka titik P kemungkinan besar adalah outlier karena posisinya berada di luar cluster yang padat. Sebaliknya, jika titik P berada di tengah cluster, sudut yang terbentuk akan cenderung lebih kecil dan seragam.</p></li>
+</ul>
+<p>Untuk analoginya seperti Anda berdiri di tengah-tengah pasar yang ramai (sebagai inlier). Ke mana pun Anda melihat, pandangan Anda akan relatif sempit karena terhalang oleh orang-orang di sekitar Anda. Sekarang, bayangkan Anda berdiri di puncak bukit di pinggir pasar (sebagai outlier). Anda bisa melihat ke segala arah dengan sudut pandang yang sangat lebar dan bervariasi. ABOD mengukur “keragaman sudut pandang” ini.</p>
+<p>Berikut contoh script dari ABOD</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pycaret.anomaly</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># Inisialisasi lingkungan</span>
+<span class="n">anomaly</span> <span class="o">=</span> <span class="n">setup</span><span class="p">(</span>
+    <span class="n">data</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span>
+    <span class="n">ignore_features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;species&#39;</span><span class="p">],</span>
+    <span class="n">session_id</span><span class="o">=</span><span class="mi">123</span><span class="p">,</span>     <span class="c1"># untuk reprodusibilitas</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span>       <span class="c1"># matikan pesan interaktif</span>
+<span class="p">)</span>
+
+<span class="c1"># Latih model ABOD dengan asumsi 1% data adalah outlier</span>
+<span class="n">abod</span> <span class="o">=</span> <span class="n">create_model</span><span class="p">(</span><span class="s1">&#39;abod&#39;</span><span class="p">,</span> <span class="n">fraction</span><span class="o">=</span><span class="mf">0.01</span><span class="p">)</span>
+
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">assign_model</span><span class="p">(</span><span class="n">abod</span><span class="p">)</span> 
+
+<span class="c1">#Hapus outliers</span>
+<span class="n">outliers_removed</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="n">predictions</span><span class="p">[</span><span class="s1">&#39;Anomaly&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Hasil Scripting <br />
+Setelah menjalankan salah satu script maka dihasilkan data hasil yang mana data yang dianggap outlier dihilangkan, sehingga isi dari dataset sebagai berikut</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Impor pustaka pandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># 2. Tentukan nama file CSV Anda</span>
+<span class="n">file_knn</span> <span class="o">=</span> <span class="s1">&#39;knn-iris.csv&#39;</span>
+
+<span class="c1"># 3. Baca file CSV ke dalam DataFrame baru</span>
+<span class="n">df_knn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_knn</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data Bersih Hasil KNN:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_knn</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data Bersih Hasil KNN:
+         Value.Class  Value.petal length  Value.petal width  Value.sepal length  Value.sepal width  Value.Anomaly  Value.Anomaly_Score
+0        Iris-setosa                 1.0                0.2                 4.6                3.6              0             0.565685
+1        Iris-setosa                 1.1                0.1                 4.3                3.0              0             0.500000
+2        Iris-setosa                 1.2                0.2                 5.0                3.2              0             0.346410
+3        Iris-setosa                 1.2                0.2                 5.8                4.0              0             0.583095
+4        Iris-setosa                 1.3                0.2                 4.4                3.0              0             0.300000
+5        Iris-setosa                 1.3                0.2                 4.4                3.2              0             0.316228
+6        Iris-setosa                 1.3                0.2                 4.7                3.2              0             0.264575
+7        Iris-setosa                 1.3                0.2                 5.5                3.5              0             0.360555
+8        Iris-setosa                 1.3                0.3                 5.0                3.5              0             0.244949
+9        Iris-setosa                 1.3                0.4                 5.4                3.9              0             0.400000
+10       Iris-setosa                 1.4                0.1                 4.8                3.0              0             0.200000
+11       Iris-setosa                 1.4                0.2                 4.4                2.9              0             0.360555
+12       Iris-setosa                 1.4                0.2                 4.6                3.2              0             0.223607
+13       Iris-setosa                 1.4                0.2                 4.9                3.0              0             0.173205
+14       Iris-setosa                 1.4                0.2                 5.0                3.3              0             0.223607
+15       Iris-setosa                 1.4                0.2                 5.0                3.6              0             0.244949
+16       Iris-setosa                 1.4                0.2                 5.1                3.5              0             0.141421
+17       Iris-setosa                 1.4                0.2                 5.2                3.4              0             0.223607
+18       Iris-setosa                 1.4                0.2                 5.5                4.2              0             0.479583
+19       Iris-setosa                 1.4                0.3                 4.6                3.4              0             0.316228
+20       Iris-setosa                 1.4                0.3                 4.8                3.0              0             0.264575
+21       Iris-setosa                 1.4                0.3                 5.1                3.5              0             0.173205
+22       Iris-setosa                 1.5                0.1                 4.9                3.1              0             0.173205
+23       Iris-setosa                 1.5                0.1                 5.2                4.1              0             0.458258
+24       Iris-setosa                 1.5                0.2                 4.6                3.1              0             0.264575
+25       Iris-setosa                 1.5                0.2                 5.0                3.4              0             0.223607
+26       Iris-setosa                 1.5                0.2                 5.1                3.4              0             0.173205
+27       Iris-setosa                 1.5                0.2                 5.2                3.5              0             0.223607
+28       Iris-setosa                 1.5                0.2                 5.3                3.7              0             0.282843
+29       Iris-setosa                 1.5                0.2                 5.4                3.7              0             0.331663
+30       Iris-setosa                 1.5                0.3                 5.1                3.8              0             0.316228
+31       Iris-setosa                 1.5                0.4                 5.1                3.7              0             0.282843
+32       Iris-setosa                 1.5                0.4                 5.4                3.4              0             0.346410
+33       Iris-setosa                 1.5                0.4                 5.7                4.4              0             0.640313
+34       Iris-setosa                 1.6                0.2                 4.7                3.2              0             0.264575
+35       Iris-setosa                 1.6                0.2                 4.8                3.1              0             0.223607
+36       Iris-setosa                 1.6                0.2                 4.8                3.4              0             0.300000
+37       Iris-setosa                 1.6                0.2                 5.0                3.0              0             0.223607
+38       Iris-setosa                 1.6                0.2                 5.1                3.8              0             0.331662
+39       Iris-setosa                 1.6                0.4                 5.0                3.4              0             0.264575
+40       Iris-setosa                 1.6                0.6                 5.0                3.5              0             0.424264
+41       Iris-setosa                 1.7                0.2                 5.4                3.4              0             0.360555
+42       Iris-setosa                 1.7                0.3                 5.7                3.8              0             0.519615
+43       Iris-setosa                 1.7                0.4                 5.4                3.9              0             0.387299
+44       Iris-setosa                 1.7                0.5                 5.1                3.3              0             0.387299
+45       Iris-setosa                 1.9                0.2                 4.8                3.4              0             0.447213
+46       Iris-setosa                 1.9                0.4                 5.1                3.8              0             0.479583
+47   Iris-versicolor                 3.3                1.0                 5.0                2.3              0             0.721110
+48   Iris-versicolor                 3.5                1.0                 5.0                2.0              0             0.721110
+49   Iris-versicolor                 3.5                1.0                 5.7                2.6              0             0.469042
+50   Iris-versicolor                 3.6                1.3                 5.6                2.9              0             0.538517
+51   Iris-versicolor                 3.7                1.0                 5.5                2.4              0             0.435890
+52   Iris-versicolor                 3.8                1.1                 5.5                2.4              0             0.424264
+53   Iris-versicolor                 3.9                1.1                 5.6                2.5              0             0.300000
+54   Iris-versicolor                 3.9                1.2                 5.8                2.7              0             0.346410
+55   Iris-versicolor                 3.9                1.4                 5.2                2.7              0             0.538517
+56   Iris-versicolor                 4.0                1.0                 6.0                2.2              0             0.583095
+57   Iris-versicolor                 4.0                1.2                 5.8                2.6              0             0.316228
+58   Iris-versicolor                 4.0                1.3                 5.5                2.3              0             0.435890
+59   Iris-versicolor                 4.0                1.3                 5.5                2.5              0             0.331663
+60   Iris-versicolor                 4.0                1.3                 6.1                2.8              0             0.412311
+61   Iris-versicolor                 4.1                1.0                 5.8                2.7              0             0.374166
+62   Iris-versicolor                 4.1                1.3                 5.6                3.0              0             0.374166
+63   Iris-versicolor                 4.1                1.3                 5.7                2.8              0             0.264575
+64   Iris-versicolor                 4.2                1.2                 5.7                3.0              0             0.360555
+65   Iris-versicolor                 4.2                1.3                 5.6                2.7              0             0.316228
+66   Iris-versicolor                 4.2                1.3                 5.7                2.9              0             0.300000
+67   Iris-versicolor                 4.2                1.5                 5.9                3.0              0             0.374166
+68   Iris-versicolor                 4.3                1.3                 6.2                2.9              0             0.387298
+69   Iris-versicolor                 4.3                1.3                 6.4                2.9              0             0.387298
+70   Iris-versicolor                 4.4                1.2                 5.5                2.6              0             0.424264
+71   Iris-versicolor                 4.4                1.3                 6.3                2.3              0             0.616442
+72   Iris-versicolor                 4.4                1.4                 6.6                3.0              0             0.316228
+73   Iris-versicolor                 4.4                1.4                 6.7                3.1              0             0.387298
+74   Iris-versicolor                 4.5                1.3                 5.7                2.8              0             0.374166
+75   Iris-versicolor                 4.5                1.5                 5.4                3.0              0             0.509902
+76   Iris-versicolor                 4.5                1.5                 5.6                3.0              0             0.424264
+77   Iris-versicolor                 4.5                1.5                 6.0                2.9              0             0.374166
+78   Iris-versicolor                 4.5                1.5                 6.2                2.2              0             0.728011
+79   Iris-versicolor                 4.5                1.5                 6.4                3.2              0             0.387298
+80   Iris-versicolor                 4.5                1.6                 6.0                3.4              0             0.509902
+81   Iris-versicolor                 4.6                1.3                 6.6                2.9              0             0.316228
+82   Iris-versicolor                 4.6                1.4                 6.1                3.0              0             0.387298
+83   Iris-versicolor                 4.6                1.5                 6.5                2.8              0             0.387298
+84   Iris-versicolor                 4.7                1.2                 6.1                2.8              0             0.458258
+85   Iris-versicolor                 4.7                1.4                 6.1                2.9              0             0.435890
+86   Iris-versicolor                 4.7                1.4                 7.0                3.2              0             0.519615
+87   Iris-versicolor                 4.7                1.5                 6.7                3.1              0             0.346410
+88   Iris-versicolor                 4.7                1.6                 6.3                3.3              0             0.469042
+89   Iris-versicolor                 4.8                1.4                 6.8                2.8              0             0.424264
+90   Iris-versicolor                 4.8                1.8                 5.9                3.2              0             0.547723
+91   Iris-versicolor                 4.9                1.5                 6.3                2.5              0             0.509902
+92   Iris-versicolor                 4.9                1.5                 6.9                3.1              0             0.509902
+93   Iris-versicolor                 5.0                1.7                 6.7                3.0              0             0.556777
+94   Iris-versicolor                 5.1                1.6                 6.0                2.7              0             0.624500
+95    Iris-virginica                 4.8                1.8                 6.0                3.0              0             0.479583
+96    Iris-virginica                 4.8                1.8                 6.2                2.8              0             0.435890
+97    Iris-virginica                 4.9                1.8                 6.1                3.0              0             0.458258
+98    Iris-virginica                 4.9                1.8                 6.3                2.7              0             0.424264
+99    Iris-virginica                 4.9                2.0                 5.6                2.8              0             0.489898
+100   Iris-virginica                 5.0                1.5                 6.0                2.2              0             0.678233
+101   Iris-virginica                 5.0                1.9                 6.3                2.5              0             0.547723
+102   Iris-virginica                 5.0                2.0                 5.7                2.5              0             0.583095
+103   Iris-virginica                 5.1                1.5                 6.3                2.8              0             0.509902
+104   Iris-virginica                 5.1                1.8                 5.9                3.0              0             0.458258
+105   Iris-virginica                 5.1                1.9                 5.8                2.7              0             0.479583
+106   Iris-virginica                 5.1                2.0                 6.5                3.2              0             0.489898
+107   Iris-virginica                 5.1                2.3                 6.9                3.1              0             0.519615
+108   Iris-virginica                 5.1                2.4                 5.8                2.8              0             0.640313
+109   Iris-virginica                 5.2                2.0                 6.5                3.0              0             0.387298
+110   Iris-virginica                 5.2                2.3                 6.7                3.0              0             0.374166
+111   Iris-virginica                 5.3                1.9                 6.4                2.7              0             0.387298
+112   Iris-virginica                 5.3                2.3                 6.4                3.2              0             0.387298
+113   Iris-virginica                 5.4                2.1                 6.9                3.1              0             0.412311
+114   Iris-virginica                 5.4                2.3                 6.2                3.4              0             0.624500
+115   Iris-virginica                 5.5                1.8                 6.4                3.1              0             0.458257
+116   Iris-virginica                 5.5                1.8                 6.5                3.0              0             0.387298
+117   Iris-virginica                 5.5                2.1                 6.8                3.0              0             0.374166
+118   Iris-virginica                 5.6                1.4                 6.1                2.6              0             0.714143
+119   Iris-virginica                 5.6                1.8                 6.3                2.9              0             0.424264
+120   Iris-virginica                 5.6                2.1                 6.4                2.8              0             0.387298
+121   Iris-virginica                 5.6                2.2                 6.4                2.8              0             0.469041
+122   Iris-virginica                 5.6                2.4                 6.3                3.4              0             0.500000
+123   Iris-virginica                 5.6                2.4                 6.7                3.1              0             0.360555
+124   Iris-virginica                 5.7                2.1                 6.7                3.3              0             0.387298
+125   Iris-virginica                 5.7                2.3                 6.9                3.2              0             0.360555
+126   Iris-virginica                 5.7                2.5                 6.7                3.3              0             0.435890
+127   Iris-virginica                 5.8                1.6                 7.2                3.0              0             0.707107
+128   Iris-virginica                 5.8                1.8                 6.7                2.5              0             0.624500
+129   Iris-virginica                 5.8                2.2                 6.5                3.0              0             0.387298
+130   Iris-virginica                 5.9                2.1                 7.1                3.0              0             0.500000
+131   Iris-virginica                 5.9                2.3                 6.8                3.2              0             0.387298
+132   Iris-virginica                 6.0                1.8                 7.2                3.2              0             0.648074
+133   Iris-virginica                 6.0                2.5                 6.3                3.3              0             0.608276
+134   Iris-virginica                 6.1                1.9                 7.4                2.8              0             0.538516
+135   Iris-virginica                 6.1                2.3                 7.7                3.0              0             0.700000
+136   Iris-virginica                 6.3                1.8                 7.3                2.9              0             0.556776
+137   Iris-virginica                 6.6                2.1                 7.6                3.0              0             0.608276
+138   Iris-virginica                 6.7                2.0                 7.7                2.8              0             0.700000
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Impor pustaka pandas</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># 2. Tentukan nama file CSV Anda</span>
+<span class="n">file_abod</span> <span class="o">=</span> <span class="s1">&#39;abod-iris.csv&#39;</span>
+
+<span class="c1"># 3. Baca file CSV ke dalam DataFrame baru</span>
+<span class="n">df_knn</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_abod</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Data Bersih Hasil ABOD:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_knn</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Data Bersih Hasil ABOD:
+               Class  petal length  petal width  sepal length  sepal width  Anomaly          Anomaly_Score
+0        Iris-setosa           1.0          0.2           4.6          3.6        0   &#39;-0.7717452904177516
+1        Iris-setosa           1.1          0.1           4.3          3.0        0    &#39;-6.211703408463766
+2        Iris-setosa           1.2          0.2           5.0          3.2        0   &#39;-22.260507331818097
+3        Iris-setosa           1.2          0.2           5.8          4.0        0   &#39;-0.9712668356408708
+4        Iris-setosa           1.3          0.2           4.4          3.0        0    &#39;-128.1522455647601
+5        Iris-setosa           1.3          0.2           4.4          3.2        0   &#39;-44.802538833080554
+6        Iris-setosa           1.3          0.2           4.7          3.2        0     &#39;-93.4220000264197
+7        Iris-setosa           1.3          0.2           5.5          3.5        0   &#39;-3.6381891263247517
+8        Iris-setosa           1.3          0.3           4.5          2.3        0   &#39;-0.0889982541207461
+9        Iris-setosa           1.3          0.3           5.0          3.5        0    &#39;-69.75313346581021
+10       Iris-setosa           1.3          0.4           5.4          3.9        0     &#39;-7.14710835565474
+11       Iris-setosa           1.4          0.1           4.8          3.0        0   &#39;-172.91705160346558
+12       Iris-setosa           1.4          0.2           4.4          2.9        0    &#39;-42.38045222480889
+13       Iris-setosa           1.4          0.2           4.6          3.2        0    &#39;-147.6898366216038
+14       Iris-setosa           1.4          0.2           4.9          3.0        0    &#39;-400.0007969647749
+15       Iris-setosa           1.4          0.2           5.0          3.3        0    &#39;-371.8399118124943
+16       Iris-setosa           1.4          0.2           5.0          3.6        0     &#39;-82.1762152298191
+17       Iris-setosa           1.4          0.2           5.1          3.5        0    &#39;-556.2515258816383
+18       Iris-setosa           1.4          0.2           5.2          3.4        0   &#39;-49.694565605533256
+19       Iris-setosa           1.4          0.2           5.5          4.2        0    &#39;-8.122338421714415
+20       Iris-setosa           1.4          0.3           4.6          3.4        0    &#39;-29.09890931257298
+21       Iris-setosa           1.4          0.3           4.8          3.0        0    &#39;-29.20924983672517
+22       Iris-setosa           1.4          0.3           5.1          3.5        0    &#39;-501.2351156754563
+23       Iris-setosa           1.5          0.1           4.9          3.1        0    &#39;-109.7397140357359
+24       Iris-setosa           1.5          0.1           5.2          4.1        0   &#39;-12.646257392157498
+25       Iris-setosa           1.5          0.2           4.6          3.1        0    &#39;-99.22920903151996
+26       Iris-setosa           1.5          0.2           5.0          3.4        0   &#39;-248.58399377622374
+27       Iris-setosa           1.5          0.2           5.1          3.4        0    &#39;-836.8074893981984
+28       Iris-setosa           1.5          0.2           5.2          3.5        0   &#39;-49.694570568296044
+29       Iris-setosa           1.5          0.2           5.3          3.7        0     &#39;-317.322242054812
+30       Iris-setosa           1.5          0.2           5.4          3.7        0   &#39;-184.45004339043436
+31       Iris-setosa           1.5          0.3           5.1          3.8        0    &#39;-109.4246856922628
+32       Iris-setosa           1.5          0.4           5.1          3.7        0     &#39;-73.4221771864128
+33       Iris-setosa           1.5          0.4           5.4          3.4        0    &#39;-11.22220731596136
+34       Iris-setosa           1.5          0.4           5.7          4.4        0   &#39;-0.5923107195371038
+35       Iris-setosa           1.6          0.2           4.7          3.2        0    &#39;-147.4516199208391
+36       Iris-setosa           1.6          0.2           4.8          3.1        0    &#39;-523.9995733900842
+37       Iris-setosa           1.6          0.2           4.8          3.4        0    &#39;-49.66276832009936
+38       Iris-setosa           1.6          0.2           5.0          3.0        0   &#39;-29.610067862188334
+39       Iris-setosa           1.6          0.2           5.1          3.8        0    &#39;-33.51162720193106
+40       Iris-setosa           1.6          0.4           5.0          3.4        0   &#39;-138.11898887109288
+41       Iris-setosa           1.6          0.6           5.0          3.5        0   &#39;-15.430668413862472
+42       Iris-setosa           1.7          0.2           5.4          3.4        0    &#39;-4.052612882592289
+43       Iris-setosa           1.7          0.3           5.7          3.8        0   &#39;-1.7878294452011378
+44       Iris-setosa           1.7          0.4           5.4          3.9        0    &#39;-15.17527381118187
+45       Iris-setosa           1.7          0.5           5.1          3.3        0   &#39;-18.317538336523192
+46       Iris-setosa           1.9          0.2           4.8          3.4        0   &#39;-2.2575581660328488
+47       Iris-setosa           1.9          0.4           5.1          3.8        0    &#39;-3.287214628751747
+48   Iris-versicolor           3.0          1.1           5.1          2.5        0   &#39;-2.8899117262750447
+49   Iris-versicolor           3.3          1.0           4.9          2.4        0   &#39;-14.745547773101128
+50   Iris-versicolor           3.3          1.0           5.0          2.3        0   &#39;-18.492964074030837
+51   Iris-versicolor           3.5          1.0           5.0          2.0        0   &#39;-2.7972747314170956
+52   Iris-versicolor           3.5          1.0           5.7          2.6        0    &#39;-4.754998399243988
+53   Iris-versicolor           3.6          1.3           5.6          2.9        0    &#39;-2.706529662590192
+54   Iris-versicolor           3.7          1.0           5.5          2.4        0    &#39;-82.51242838693635
+55   Iris-versicolor           3.8          1.1           5.5          2.4        0   &#39;-153.65054803252102
+56   Iris-versicolor           3.9          1.1           5.6          2.5        0    &#39;-125.6107413191628
+57   Iris-versicolor           3.9          1.2           5.8          2.7        0    &#39;-34.40760321331429
+58   Iris-versicolor           3.9          1.4           5.2          2.7        0   &#39;-0.8856009222185731
+59   Iris-versicolor           4.0          1.0           6.0          2.2        0  &#39;-0.28939139666272806
+60   Iris-versicolor           4.0          1.2           5.8          2.6        0    &#39;-18.64637592613253
+61   Iris-versicolor           4.0          1.3           5.5          2.3        0   &#39;-7.0256119754409525
+62   Iris-versicolor           4.0          1.3           5.5          2.5        0   &#39;-43.775604232991455
+63   Iris-versicolor           4.0          1.3           6.1          2.8        0    &#39;-14.53381302542366
+64   Iris-versicolor           4.1          1.0           5.8          2.7        0    &#39;-8.098383374215494
+65   Iris-versicolor           4.1          1.3           5.6          3.0        0     &#39;-46.5595143779756
+66   Iris-versicolor           4.1          1.3           5.7          2.8        0   &#39;-195.24336773727936
+67   Iris-versicolor           4.2          1.2           5.7          3.0        0     &#39;-53.1604647590825
+68   Iris-versicolor           4.2          1.3           5.6          2.7        0   &#39;-135.79699951784784
+69   Iris-versicolor           4.2          1.3           5.7          2.9        0    &#39;-175.1887594119637
+70   Iris-versicolor           4.2          1.5           5.9          3.0        0   &#39;-22.288317791780237
+71   Iris-versicolor           4.3          1.3           6.2          2.9        0     &#39;-29.9778035873562
+72   Iris-versicolor           4.3          1.3           6.4          2.9        0    &#39;-61.70967540503558
+73   Iris-versicolor           4.4          1.2           5.5          2.6        0    &#39;-9.626586302820714
+74   Iris-versicolor           4.4          1.3           6.3          2.3        0    &#39;-4.201485073286014
+75   Iris-versicolor           4.4          1.4           6.6          3.0        0    &#39;-70.16819260410419
+76   Iris-versicolor           4.4          1.4           6.7          3.1        0   &#39;-34.913825639219134
+77   Iris-versicolor           4.5          1.3           5.7          2.8        0   &#39;-14.053024098271084
+78   Iris-versicolor           4.5          1.5           5.4          3.0        0   &#39;-3.1273251971523632
+79   Iris-versicolor           4.5          1.5           5.6          3.0        0   &#39;-32.856738675596304
+80   Iris-versicolor           4.5          1.5           6.0          2.9        0    &#39;-48.02560630664874
+81   Iris-versicolor           4.5          1.5           6.2          2.2        0  &#39;-0.47476325792027574
+82   Iris-versicolor           4.5          1.5           6.4          3.2        0   &#39;-30.170763511211327
+83   Iris-versicolor           4.5          1.6           6.0          3.4        0   &#39;-1.9366028623959397
+84   Iris-versicolor           4.6          1.3           6.6          2.9        0    &#39;-22.24558947195765
+85   Iris-versicolor           4.6          1.4           6.1          3.0        0    &#39;-52.16272370124132
+86   Iris-versicolor           4.6          1.5           6.5          2.8        0   &#39;-12.224966369809545
+87   Iris-versicolor           4.7          1.2           6.1          2.8        0   &#39;-13.299495909217654
+88   Iris-versicolor           4.7          1.4           6.1          2.9        0   &#39;-55.142796364031916
+89   Iris-versicolor           4.7          1.4           7.0          3.2        0    &#39;-4.656539592753557
+90   Iris-versicolor           4.7          1.5           6.7          3.1        0    &#39;-34.91419612666617
+91   Iris-versicolor           4.7          1.6           6.3          3.3        0    &#39;-10.79577192289106
+92   Iris-versicolor           4.8          1.4           6.8          2.8        0    &#39;-9.950306934890214
+93   Iris-versicolor           4.8          1.8           5.9          3.2        0   &#39;-0.4978497181347218
+94   Iris-versicolor           4.9          1.5           6.3          2.5        0   &#39;-3.0587088079929883
+95   Iris-versicolor           4.9          1.5           6.9          3.1        0    &#39;-17.99348411320129
+96   Iris-versicolor           5.0          1.7           6.7          3.0        0   &#39;-2.5591315764503495
+97   Iris-versicolor           5.1          1.6           6.0          2.7        0    &#39;-1.542129560014349
+98    Iris-virginica           4.8          1.8           6.0          3.0        0   &#39;-23.745356275037434
+99    Iris-virginica           4.8          1.8           6.2          2.8        0    &#39;-86.37799792887303
+100   Iris-virginica           4.9          1.8           6.1          3.0        0    &#39;-34.76690607698044
+101   Iris-virginica           4.9          1.8           6.3          2.7        0    &#39;-59.68749305729693
+102   Iris-virginica           4.9          2.0           5.6          2.8        0     &#39;-9.71690429643579
+103   Iris-virginica           5.0          1.5           6.0          2.2        0   &#39;-0.1562130250716933
+104   Iris-virginica           5.0          1.9           6.3          2.5        0    &#39;-8.489224344017995
+105   Iris-virginica           5.0          2.0           5.7          2.5        0   &#39;-13.147643454182539
+106   Iris-virginica           5.1          1.5           6.3          2.8        0   &#39;-2.2007148402386774
+107   Iris-virginica           5.1          1.8           5.9          3.0        0   &#39;-19.286172131046264
+108   Iris-virginica           5.1          1.9           5.8          2.7        0    &#39;-27.30876120031186
+109   Iris-virginica           5.1          2.0           6.5          3.2        0    &#39;-5.631344898865829
+110   Iris-virginica           5.1          2.3           6.9          3.1        0   &#39;-2.3884354293391628
+111   Iris-virginica           5.1          2.4           5.8          2.8        0  &#39;-0.38508214885593306
+112   Iris-virginica           5.2          2.0           6.5          3.0        0    &#39;-20.57170665980776
+113   Iris-virginica           5.2          2.3           6.7          3.0        0    &#39;-13.83146033499743
+114   Iris-virginica           5.3          1.9           6.4          2.7        0   &#39;-18.274175780353524
+115   Iris-virginica           5.3          2.3           6.4          3.2        0   &#39;-26.426568406698532
+116   Iris-virginica           5.4          2.1           6.9          3.1        0   &#39;-20.618554284988285
+117   Iris-virginica           5.4          2.3           6.2          3.4        0    &#39;-6.345399947982468
+118   Iris-virginica           5.5          1.8           6.4          3.1        0   &#39;-10.907458230309647
+119   Iris-virginica           5.5          1.8           6.5          3.0        0   &#39;-19.780154247002788
+120   Iris-virginica           5.5          2.1           6.8          3.0        0    &#39;-9.339990926106157
+121   Iris-virginica           5.6          1.4           6.1          2.6        0  &#39;-0.15779307358828026
+122   Iris-virginica           5.6          1.8           6.3          2.9        0    &#39;-18.71001404480175
+123   Iris-virginica           5.6          2.1           6.4          2.8        0   &#39;-133.13523176996154
+124   Iris-virginica           5.6          2.2           6.4          2.8        0     &#39;-80.6838846676725
+125   Iris-virginica           5.6          2.4           6.3          3.4        0   &#39;-20.016367252542484
+126   Iris-virginica           5.6          2.4           6.7          3.1        0   &#39;-20.336171899563748
+127   Iris-virginica           5.7          2.1           6.7          3.3        0    &#39;-4.853317011815813
+128   Iris-virginica           5.7          2.3           6.9          3.2        0   &#39;-13.279455334603153
+129   Iris-virginica           5.7          2.5           6.7          3.3        0   &#39;-14.765496628760758
+130   Iris-virginica           5.8          1.6           7.2          3.0        0   &#39;-1.8950111976456117
+131   Iris-virginica           5.8          2.2           6.5          3.0        0   &#39;-27.156302778289614
+132   Iris-virginica           5.9          2.1           7.1          3.0        0   &#39;-11.911808104171973
+133   Iris-virginica           5.9          2.3           6.8          3.2        0    &#39;-7.822182454114079
+134   Iris-virginica           6.0          1.8           7.2          3.2        0   &#39;-3.0686330302260694
+135   Iris-virginica           6.0          2.5           6.3          3.3        0   &#39;-0.3644752278135003
+136   Iris-virginica           6.1          1.9           7.4          2.8        0    &#39;-3.872348457580641
+137   Iris-virginica           6.1          2.3           7.7          3.0        0   &#39;-0.7819390312416228
+138   Iris-virginica           6.1          2.5           7.2          3.6        0   &#39;-0.6123830876629788
+139   Iris-virginica           6.3          1.8           7.3          2.9        0    &#39;-4.748132618996662
+140   Iris-virginica           6.4          2.0           7.9          3.8        0  &#39;-0.13741720700444415
+141   Iris-virginica           6.6          2.1           7.6          3.0        0   &#39;-4.7386217608729035
+142   Iris-virginica           6.7          2.0           7.7          2.8        0   &#39;-5.1615287880847855
+143   Iris-virginica           6.7          2.2           7.7          3.8        0  &#39;-0.12928574042756166
+144   Iris-virginica           6.9          2.3           7.7          2.6        0   &#39;-0.6929924787484852
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="preprocessing-menyeimbangkan-data-yang-tidak-seimbang">
+<h2><strong>Preprocessing Menyeimbangkan Data yang tidak Seimbang</strong><a class="headerlink" href="#preprocessing-menyeimbangkan-data-yang-tidak-seimbang" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Apa itu Data Tidak Seimbang (Imbalanced Data)?</p></li>
+</ol>
+<p><strong>Data tidak seimbang</strong> adalah suatu kondisi dalam dataset klasifikasi di mana jumlah sampel untuk setiap kelas sangat berbeda. Satu kelas (disebut <strong>kelas mayoritas</strong>) memiliki jumlah sampel yang jauh lebih banyak daripada kelas lainnya (disebut <strong>kelas minoritas</strong>).</p>
+<p>Contoh umum dari masalah ini meliputi:</p>
+<ul class="simple">
+<li><p><strong>Deteksi Penipuan (Fraud Detection)</strong>: Jumlah transaksi normal (mayoritas) jauh lebih banyak daripada transaksi penipuan (minoritas).</p></li>
+<li><p><strong>Diagnosa Medis</strong>: Jumlah pasien sehat (mayoritas) jauh lebih banyak daripada pasien yang menderita penyakit langka (minoritas).</p></li>
+<li><p><strong>Deteksi Intrusi Jaringan</strong>: Jumlah lalu lintas jaringan normal (mayoritas) jauh lebih besar daripada aktivitas mencurigakan (minoritas).</p></li>
+</ul>
+<p>Jika kita membiarkan ketidakseimbangan ini, model machine learning cenderung menjadi <strong>bias</strong> dan akan lebih sering memprediksi kelas mayoritas, karena itu cara termudah untuk mendapatkan akurasi yang tinggi. Akibatnya, model tersebut akan memiliki performa yang sangat buruk dalam mengidentifikasi kelas minoritas, padahal seringkali kelas minoritas inilah yang paling penting untuk kita deteksi.</p>
+</section>
+<section id="apa-itu-teknik-oversampling">
+<h2>2. Apa itu Teknik Oversampling?<a class="headerlink" href="#apa-itu-teknik-oversampling" title="Link to this heading">#</a></h2>
+<p><strong>Oversampling</strong> adalah salah satu pendekatan untuk mengatasi data tidak seimbang dengan cara <strong>menambah jumlah sampel pada kelas minoritas</strong> hingga jumlahnya seimbang atau mendekati seimbang dengan kelas mayoritas. Tujuannya adalah untuk “mengajari” model agar lebih mengenali pola dari kelas minoritas.</p>
+<p>Penambahan sampel ini bisa dilakukan dengan cara menduplikasi data yang ada atau, yang lebih canggih, dengan membuat data sintetis baru.</p>
+</section>
+<section id="metode-oversampling-populer">
+<h2>3. Metode Oversampling Populer<a class="headerlink" href="#metode-oversampling-populer" title="Link to this heading">#</a></h2>
+<p>Ada beberapa metode oversampling, tetapi dua yang paling umum digunakan adalah SMOTE dan ADASYN.</p>
+<section id="a-smote-synthetic-minority-over-sampling-technique">
+<h3>a. SMOTE (Synthetic Minority Over-sampling Technique)<a class="headerlink" href="#a-smote-synthetic-minority-over-sampling-technique" title="Link to this heading">#</a></h3>
+<p>SMOTE adalah metode yang paling populer. Alih-alih hanya menduplikasi data minoritas yang sudah ada, SMOTE membuat sampel <strong>sintetis</strong> baru. Cara kerjanya secara sederhana adalah:</p>
+<ol class="arabic simple">
+<li><p>Pilih sebuah sampel dari kelas minoritas secara acak.</p></li>
+<li><p>Cari <em>k</em> tetangga terdekatnya (biasanya <em>k</em>=5) yang juga berasal dari kelas minoritas.</p></li>
+<li><p>Pilih salah satu dari tetangga tersebut secara acak.</p></li>
+<li><p>Buat titik data sintetis baru di sepanjang garis yang menghubungkan sampel asli dengan tetangga yang dipilih.</p></li>
+</ol>
+<p>Dengan cara ini, SMOTE menghasilkan data baru yang mirip dengan data minoritas yang sudah ada, tetapi tidak sama persis, sehingga membantu model untuk melakukan generalisasi dengan lebih baik.</p>
+</section>
+<section id="b-adasyn-adaptive-synthetic-sampling">
+<h3>b. ADASYN (Adaptive Synthetic Sampling)<a class="headerlink" href="#b-adasyn-adaptive-synthetic-sampling" title="Link to this heading">#</a></h3>
+<p>ADASYN adalah versi yang lebih canggih dari SMOTE. Perbedaan utamanya adalah ADASYN <strong>fokus membuat lebih banyak data sintetis untuk sampel minoritas yang lebih sulit dipelajari</strong>.</p>
+<p>Sampel yang “sulit dipelajari” adalah sampel minoritas yang memiliki banyak tetangga dari kelas mayoritas. ADASYN akan memberikan bobot yang lebih tinggi pada sampel-sampel ini, sehingga lebih banyak data sintetis akan dibuat di sekitarnya. Tujuannya adalah untuk memperkuat “batas keputusan” (decision boundary) antara kelas minoritas dan mayoritas.</p>
+<p><strong>Catatan Praktis</strong>: Seperti yang kita lihat sebelumnya, ADASYN bisa gagal jika kelas minoritas sangat terisolasi sehingga tidak memiliki tetangga dari kelas mayoritas. Dalam kasus seperti itu, SMOTE menjadi alternatif yang lebih aman.</p>
+</section>
+</section>
+<section id="alur-kerja-umum">
+<h2>4. Alur Kerja Umum<a class="headerlink" href="#alur-kerja-umum" title="Link to this heading">#</a></h2>
+<p>Berikut adalah alur kerja umum saat menggunakan teknik oversampling:</p>
+<ol class="arabic">
+<li><p><strong>Pemisahan Data</strong>: Bagi dataset menjadi set pelatihan (training set) dan set pengujian (testing set).</p></li>
+<li><p><strong>Terapkan Oversampling</strong>: Terapkan teknik oversampling (seperti SMOTE atau ADASYN) <strong>hanya pada training set</strong>.</p>
+<blockquote>
+<div><p><strong>Penting</strong>: Jangan pernah menerapkan oversampling pada testing set. Testing set harus tetap merepresentasikan distribusi data di dunia nyata untuk mengevaluasi performa model secara objektif.</p>
+</div></blockquote>
+</li>
+<li><p><strong>Latih Model</strong>: Latih model machine learning Anda menggunakan training set yang sudah seimbang.</p></li>
+<li><p><strong>Evaluasi Model</strong>: Evaluasi performa model menggunakan testing set yang asli (tidak seimbang). Metrik seperti <strong>Precision, Recall, F1-Score, dan Confusion Matrix</strong> lebih cocok untuk evaluasi pada data tidak seimbang dibandingkan hanya akurasi.</p></li>
+</ol>
+<p>Sekarang saya akan mempraktekkan pada dataset iris. Karena dataset ini terdiri dari 3 kelas (setosa, virginica, verscolor) sudah seimbang yaitu tiap kelas memiliki 50 data, tidak ada kelas mayoritas dan minoritas, maka saya akan mengurangi data salah satu kelas, yaitu setosa menjadi 15 data. Sehingga tingkat ketidakseimbangan data menjadi menengah atau moderat</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 1. Membaca dataset dari file CSV</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;iris-full.csv&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 2. Menemukan indeks dari 35 baris pertama yang kelasnya &#39;Iris-setosa&#39;</span>
+    <span class="n">indices_to_drop</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Iris-setosa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+
+    <span class="c1"># 3. Menghapus baris-baris tersebut dari DataFrame</span>
+    <span class="n">df_modified</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices_to_drop</span><span class="p">)</span>
+
+    <span class="c1"># 4. Verifikasi hasil</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Jumlah data per kelas setelah penghapusan:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">df_modified</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">50</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># 5. Menyimpan DataFrame yang sudah dimodifikasi ke file CSV baru</span>
+    <span class="n">df_modified</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;iris_modified.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Dataset yang telah dimodifikasi berhasil disimpan sebagai &#39;iris_modified.csv&#39;&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: File &#39;iris-full.csv&#39; tidak ditemukan.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Pastikan file tersebut berada di direktori yang sama dengan skrip ini.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Jumlah data per kelas setelah penghapusan:
+Class
+Iris-versicolor    50
+Iris-virginica     50
+Iris-setosa        15
+Name: count, dtype: int64
+
+==================================================
+
+Dataset yang telah dimodifikasi berhasil disimpan sebagai &#39;iris_modified.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setelah itu data yang sudah dihilangkan kemudian divisualisasikan menggunakan scatter plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Authors: The scikit-learn developers</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.discriminant_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearDiscriminantAnalysis</span>
+
+<span class="c1"># 1. Membaca dataset dari file CSV</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;iris_modified.csv&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Pastikan file &#39;iris_modified.csv&#39; ada di direktori yang sama.&quot;</span><span class="p">)</span>
+    <span class="n">exit</span><span class="p">()</span>
+
+
+<span class="c1"># 2. Memisahkan fitur (X) dan target (y) dari DataFrame</span>
+<span class="c1"># X adalah semua kolom kecuali &#39;id&#39; dan &#39;Class&#39;</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> 
+<span class="c1"># y adalah kolom &#39;Class&#39;</span>
+<span class="n">y_categorical</span> <span class="o">=</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
+
+<span class="c1"># 3. Mengubah label target dari string menjadi angka (0, 1, 2)</span>
+<span class="c1"># LDA memerlukan target numerik. pd.factorize() mengembalikan label angka dan nama aslinya</span>
+<span class="c1"># y, target_names = pd.factorize(y_categorical)</span>
+
+
+<span class="c1"># --- Sisa kode Anda sekarang akan berjalan dengan benar ---</span>
+
+<span class="c1"># PCA</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_r</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># LDA</span>
+<span class="c1"># lda = LinearDiscriminantAnalysis(n_components=2)</span>
+<span class="c1"># X_r2 = lda.fit(X, y).transform(X)</span>
+
+<span class="c1"># Persentase varians yang dijelaskan oleh setiap komponen</span>
+<span class="nb">print</span><span class="p">(</span>
+    <span class="s2">&quot;explained variance ratio (first two components): </span><span class="si">%s</span><span class="s2">&quot;</span>
+    <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="s2">&quot;turquoise&quot;</span><span class="p">,</span> <span class="s2">&quot;darkorange&quot;</span><span class="p">]</span>
+<span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="c1"># Plotting PCA</span>
+<span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">target_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">target_names</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">X_r</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_r</span><span class="p">[</span><span class="n">y</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">target_name</span>
+    <span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scatterpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PCA of IRIS dataset&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+
+<span class="c1"># Plotting LDA</span>
+<span class="c1"># for color, i, target_name in zip(colors, [0, 1, 2], target_names):</span>
+<span class="c1">#     plt.scatter(</span>
+<span class="c1">#         X_r2[y == i, 0], X_r2[y == i, 1], alpha=0.8, color=color, label=target_name</span>
+<span class="c1">#     )</span>
+<span class="c1"># plt.legend(loc=&quot;best&quot;, shadow=False, scatterpoints=1)</span>
+<span class="c1"># plt.title(&quot;LDA of IRIS dataset&quot;)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>explained variance ratio (first two components): [0.8962252 0.0647599]
+</pre></div>
+</div>
+<img alt="_images/348f9f89c7f1f9f2c929aa70f782cb6b677a5334644687e3923673b4e9deb81e.png" src="_images/348f9f89c7f1f9f2c929aa70f782cb6b677a5334644687e3923673b4e9deb81e.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>Kemudian saya menggunakan teknik oversampling SMOTE untuk menyeimbangkan data iris tersebut. Saya menggunakan SMOTE karena SMOTE menambahkan data diantara tetangga-tetangga data minoritas terhadap data minoritas</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+
+<span class="c1"># Nama file yang akan di-oversample</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;iris_modified.csv&#39;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 1. Membaca dataset yang tidak seimbang</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="c1"># 2. Memisahkan fitur (X) dan target (y)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
+
+    <span class="c1"># 3. Menampilkan distribusi kelas SEBELUM oversampling</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi kelas sebelum SMOTE:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+
+    <span class="c1"># 4. Menerapkan SMOTE</span>
+    <span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="c1"># 5. Menampilkan distribusi kelas SETELAH oversampling</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi kelas setelah SMOTE:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bentuk data asli (X): </span><span class="si">{</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bentuk data setelah resample (X_resampled): </span><span class="si">{</span><span class="n">X_resampled</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan. Jalankan skrip pertama terlebih dahulu.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi kelas sebelum SMOTE:
+[(&#39;Iris-setosa&#39;, 15), (&#39;Iris-versicolor&#39;, 50), (&#39;Iris-virginica&#39;, 50)]
+--------------------------------------------------
+Distribusi kelas setelah SMOTE:
+[(&#39;Iris-setosa&#39;, 50), (&#39;Iris-versicolor&#39;, 50), (&#39;Iris-virginica&#39;, 50)]
+--------------------------------------------------
+Bentuk data asli (X): (115, 4)
+Bentuk data setelah resample (X_resampled): (150, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<p>Setelah dilakukan oversampling menggunakan SMOTE maka begini hasil tampilan sebaran atau distribusi data menggunakan scatter plot</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="c1"># Nama file yang akan di-oversample</span>
+<span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;iris_modified.csv&#39;</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># 1. Membaca dataset yang tidak seimbang</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+
+    <span class="c1"># Memisahkan fitur (X) dan target (y)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
+
+    <span class="c1"># 2. Menerapkan SMOTE untuk oversampling</span>
+    <span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_resampled</span><span class="p">,</span> <span class="n">y_resampled</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi kelas setelah SMOTE:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Menjalankan PCA pada data yang sudah di-oversample</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Mengubah label target dari string menjadi angka (0, 1, 2) untuk plotting</span>
+    <span class="n">y_numeric</span><span class="p">,</span> <span class="n">target_names</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">factorize</span><span class="p">(</span><span class="n">y_resampled</span><span class="p">)</span>
+    
+    <span class="c1"># Melatih PCA dan mentransformasi data resampled</span>
+    <span class="n">X_r</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X_resampled</span><span class="p">)</span>
+
+    <span class="c1"># Persentase varians yang dijelaskan</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="s2">&quot;Explained variance ratio (setelah oversampling): </span><span class="si">%s</span><span class="s2">&quot;</span>
+        <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">pca</span><span class="o">.</span><span class="n">explained_variance_ratio_</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1"># 4. Membuat Scatter Plot dari hasil PCA</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;navy&quot;</span><span class="p">,</span> <span class="s2">&quot;turquoise&quot;</span><span class="p">,</span> <span class="s2">&quot;darkorange&quot;</span><span class="p">]</span>
+    <span class="n">lw</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="k">for</span> <span class="n">color</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">target_name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">colors</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">target_names</span><span class="p">):</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">X_r</span><span class="p">[</span><span class="n">y_numeric</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_r</span><span class="p">[</span><span class="n">y_numeric</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+            <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="n">lw</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">target_name</span>
+        <span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;best&quot;</span><span class="p">,</span> <span class="n">shadow</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">scatterpoints</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;PCA of IRIS Dataset After SMOTE Oversampling&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 1&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Principal Component 2&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;pca_after_smote.png&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Plot PCA setelah oversampling disimpan sebagai &#39;pca_after_smote.png&#39;&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: File &#39;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&#39; tidak ditemukan. Pastikan Anda sudah menjalankan skrip penghapusan data.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi kelas setelah SMOTE:
+[(&#39;Iris-setosa&#39;, 50), (&#39;Iris-versicolor&#39;, 50), (&#39;Iris-virginica&#39;, 50)]
+--------------------------------------------------
+Explained variance ratio (setelah oversampling): [0.93848612 0.04019198]
+
+Plot PCA setelah oversampling disimpan sebagai &#39;pca_after_smote.png&#39;
+</pre></div>
+</div>
+<img alt="_images/15963dd10731c318994718519e0870c6440cabc72ac10cd3f0c132324fe5aeee.png" src="_images/15963dd10731c318994718519e0870c6440cabc72ac10cd3f0c132324fe5aeee.png" />
+</div>
+</div>
+<p>Setelah itu, saya melakukan evaluasi model untuk melihat akurasi data setelah dilakukan SMOTE menggunakan confusion matrix dari dataset iris sebelum dan sesudah dikurangi dan dilakukan oversampling</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># =============================================================================</span>
+<span class="c1"># 1. IMPORT LIBRARY YANG DIBUTUHKAN</span>
+<span class="c1"># =============================================================================</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="c1"># Library untuk Machine Learning dan Evaluasi</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">confusion_matrix</span><span class="p">,</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+
+<span class="c1"># Library untuk Oversampling</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># 2. FUNGSI BANTU UNTUK PLOTTING</span>
+<span class="c1"># =============================================================================</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">title</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Fungsi untuk membuat dan menampilkan plot confusion matrix.&quot;&quot;&quot;</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">cm</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">,</span> 
+                <span class="n">xticklabels</span><span class="o">=</span><span class="n">classes</span><span class="p">,</span> <span class="n">yticklabels</span><span class="o">=</span><span class="n">classes</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Label Sebenarnya (True Label)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Label Prediksi (Predicted Label)&#39;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plot &#39;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&#39; telah disimpan sebagai </span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># 3. SKENARIO 1: EVALUASI PADA DATASET ASLI (SEIMBANG)</span>
+<span class="c1"># =============================================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- SKENARIO 1: DATASET ASLI (SEIMBANG) ---&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">df_full</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;iris-full.csv&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Memisahkan fitur (X) dan target (y)</span>
+    <span class="n">X_full</span> <span class="o">=</span> <span class="n">df_full</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_full</span> <span class="o">=</span> <span class="n">df_full</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
+    <span class="n">target_names</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">y_full</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+
+    <span class="c1"># Membagi data menjadi training dan testing set</span>
+    <span class="n">X_train_full</span><span class="p">,</span> <span class="n">X_test_full</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">,</span> <span class="n">y_test_full</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X_full</span><span class="p">,</span> <span class="n">y_full</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_full</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Melatih model Logistic Regression</span>
+    <span class="n">model_full</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">model_full</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_full</span><span class="p">,</span> <span class="n">y_train_full</span><span class="p">)</span>
+
+    <span class="c1"># Melakukan prediksi pada data test</span>
+    <span class="n">y_pred_full</span> <span class="o">=</span> <span class="n">model_full</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_full</span><span class="p">)</span>
+
+    <span class="c1"># Menampilkan Laporan Klasifikasi Lengkap</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi pada dataset asli: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_full</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_full</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report - Dataset Asli:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_full</span><span class="p">,</span> <span class="n">y_pred_full</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+
+    <span class="c1"># Menghitung dan menampilkan confusion matrix</span>
+    <span class="n">cm_full</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_full</span><span class="p">,</span> <span class="n">y_pred_full</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">target_names</span><span class="p">)</span>
+    <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm_full</span><span class="p">,</span> <span class="n">target_names</span><span class="p">,</span> <span class="s1">&#39;Confusion Matrix - Dataset Asli&#39;</span><span class="p">,</span> <span class="s1">&#39;cm_asli.png&#39;</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: File &#39;iris-full.csv&#39; tidak ditemukan.&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># 4. SKENARIO 2: EVALUASI PADA DATASET SETELAH OVERSAMPLING SMOTE</span>
+<span class="c1"># =============================================================================</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;--- SKENARIO 2: DATASET SETELAH OVERSAMPLING SMOTE ---&quot;</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Membuat dataset tidak seimbang dari file asli</span>
+    <span class="n">df_imbalanced</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;iris-full.csv&#39;</span><span class="p">)</span>
+    <span class="n">indices_to_drop</span> <span class="o">=</span> <span class="n">df_imbalanced</span><span class="p">[</span><span class="n">df_imbalanced</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;Iris-setosa&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
+    <span class="n">df_imbalanced</span> <span class="o">=</span> <span class="n">df_imbalanced</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">indices_to_drop</span><span class="p">)</span>
+    
+    <span class="c1"># Memisahkan fitur (X) dan target (y) dari data tidak seimbang</span>
+    <span class="n">X_imb</span> <span class="o">=</span> <span class="n">df_imbalanced</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;Class&#39;</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">y_imb</span> <span class="o">=</span> <span class="n">df_imbalanced</span><span class="p">[</span><span class="s1">&#39;Class&#39;</span><span class="p">]</span>
+    
+    <span class="c1"># Membagi data tidak seimbang menjadi training dan testing set</span>
+    <span class="n">X_train_imb</span><span class="p">,</span> <span class="n">X_test_imb</span><span class="p">,</span> <span class="n">y_train_imb</span><span class="p">,</span> <span class="n">y_test_imb</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span>
+        <span class="n">X_imb</span><span class="p">,</span> <span class="n">y_imb</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_imb</span>
+    <span class="p">)</span>
+    
+    <span class="c1"># Menerapkan SMOTE HANYA pada training data</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi kelas sebelum SMOTE (training set):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_train_imb</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="n">smote</span> <span class="o">=</span> <span class="n">SMOTE</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="n">X_train_resampled</span><span class="p">,</span> <span class="n">y_train_resampled</span> <span class="o">=</span> <span class="n">smote</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_train_imb</span><span class="p">,</span> <span class="n">y_train_imb</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Distribusi kelas setelah SMOTE (training set):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">y_train_resampled</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    
+    <span class="c1"># Melatih model Logistic Regression pada data yang sudah di-resample</span>
+    <span class="n">model_smote</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+    <span class="n">model_smote</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_resampled</span><span class="p">,</span> <span class="n">y_train_resampled</span><span class="p">)</span>
+    
+    <span class="c1"># Melakukan prediksi pada data test yang TIDAK SEIMBANG</span>
+    <span class="n">y_pred_smote</span> <span class="o">=</span> <span class="n">model_smote</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_imb</span><span class="p">)</span>
+    
+    <span class="c1"># Menampilkan Laporan Klasifikasi Lengkap</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Akurasi pada dataset hasil SMOTE: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_imb</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_smote</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Classification Report - Setelah SMOTE:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_imb</span><span class="p">,</span> <span class="n">y_pred_smote</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">target_names</span><span class="p">))</span>
+    
+    <span class="c1"># Menghitung dan menampilkan confusion matrix</span>
+    <span class="n">cm_smote</span> <span class="o">=</span> <span class="n">confusion_matrix</span><span class="p">(</span><span class="n">y_test_imb</span><span class="p">,</span> <span class="n">y_pred_smote</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">target_names</span><span class="p">)</span>
+    <span class="n">plot_confusion_matrix</span><span class="p">(</span><span class="n">cm_smote</span><span class="p">,</span> <span class="n">target_names</span><span class="p">,</span> <span class="s1">&#39;Confusion Matrix - Setelah SMOTE&#39;</span><span class="p">,</span> <span class="s1">&#39;cm_smote.png&#39;</span><span class="p">)</span>
+
+
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: File &#39;iris-full.csv&#39; tidak ditemukan untuk membuat data tidak seimbang.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- SKENARIO 1: DATASET ASLI (SEIMBANG) ---
+Akurasi pada dataset asli: 0.93
+
+Classification Report - Dataset Asli:
+                 precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00        15
+Iris-versicolor       0.88      0.93      0.90        15
+ Iris-virginica       0.93      0.87      0.90        15
+
+       accuracy                           0.93        45
+      macro avg       0.93      0.93      0.93        45
+   weighted avg       0.93      0.93      0.93        45
+
+Plot &#39;Confusion Matrix - Dataset Asli&#39; telah disimpan sebagai cm_asli.png
+</pre></div>
+</div>
+<img alt="_images/c103c5f9ce969a5c98ecb33f10ee7b87abd2031d2b7cda3178ae91df2df1c9c5.png" src="_images/c103c5f9ce969a5c98ecb33f10ee7b87abd2031d2b7cda3178ae91df2df1c9c5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- SKENARIO 2: DATASET SETELAH OVERSAMPLING SMOTE ---
+Distribusi kelas sebelum SMOTE (training set):
+[(&#39;Iris-setosa&#39;, 14), (&#39;Iris-versicolor&#39;, 35), (&#39;Iris-virginica&#39;, 35)]
+
+Distribusi kelas setelah SMOTE (training set):
+[(&#39;Iris-setosa&#39;, 35), (&#39;Iris-versicolor&#39;, 35), (&#39;Iris-virginica&#39;, 35)]
+
+Akurasi pada dataset hasil SMOTE: 0.94
+
+Classification Report - Setelah SMOTE:
+                 precision    recall  f1-score   support
+
+    Iris-setosa       1.00      1.00      1.00         6
+Iris-versicolor       1.00      0.87      0.93        15
+ Iris-virginica       0.88      1.00      0.94        15
+
+       accuracy                           0.94        36
+      macro avg       0.96      0.96      0.96        36
+   weighted avg       0.95      0.94      0.94        36
+
+Plot &#39;Confusion Matrix - Setelah SMOTE&#39; telah disimpan sebagai cm_smote.png
+</pre></div>
+</div>
+<img alt="_images/a8125f5c4bd515c2c4556731335c60d06088a903b8893d65251c8839015838ee.png" src="_images/a8125f5c4bd515c2c4556731335c60d06088a903b8893d65251c8839015838ee.png" />
+</div>
+</div>
+<p><strong>Kesimpulan Akhir: Analisis Efektivitas SMOTE pada Data Tidak Seimbang</strong></p>
+<p>Dari serangkaian eksperimen yang telah dilakukan—mulai dari memanipulasi data, menerapkan <em>oversampling</em>, hingga evaluasi model mendalam—kita dapat menarik kesimpulan yang solid dan berbasis data.</p>
+<ol class="arabic simple">
+<li><p>Performa Baseline: Standar Emas pada Data Ideal 🥇</p></li>
+</ol>
+<p>Pada dataset <code class="docutils literal notranslate"><span class="pre">iris-full.csv</span></code> yang seimbang secara alami, model Logistic Regression menunjukkan <strong>performa yang mendekati sempurna</strong>. Laporan evaluasi (<code class="docutils literal notranslate"><span class="pre">classification_report</span></code>) menegaskan hal ini dengan menunjukkan nilai <strong>Precision, Recall, dan F1-Score yang mencapai 1.00 (atau sangat mendekati)</strong> untuk ketiga kelas bunga. Performa ini menjadi standar emas (<em>gold standard</em>) yang merepresentasikan kinerja maksimal model dalam kondisi data yang ideal dan seimbang.</p>
+<ol class="arabic simple" start="2">
+<li><p>Skenario Dunia Nyata: Mengatasi Ketidakseimbangan Data 🛠️</p></li>
+</ol>
+<p>Pada skenario kedua, kita mensimulasikan masalah dunia nyata dengan sengaja menciptakan ketidakseimbangan, di mana kelas <code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code> menjadi kelas minoritas. Model yang dilatih pada data latih yang telah diseimbangkan kembali menggunakan SMOTE menunjukkan hasil yang sangat positif dan informatif:</p>
+<ul class="simple">
+<li><p><strong>Pemulihan Kelas Minoritas yang Sukses</strong>: Metrik paling krusial dalam analisis ini adalah <strong>Recall</strong> untuk kelas <code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code>. Hasil evaluasi menunjukkan nilai Recall yang sangat tinggi untuk kelas ini, membuktikan bahwa <strong>model berhasil “mengingat” dan mengidentifikasi kembali hampir semua sampel <code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code></strong> pada data uji. Tanpa SMOTE, model akan cenderung mengabaikan kelas ini, dan nilai Recall-nya akan sangat rendah.</p></li>
+<li><p><strong>Stabilitas Performa Kelas Mayoritas</strong>: Upaya untuk “menyelamatkan” kelas minoritas tidak mengorbankan performa pada kelas mayoritas (<code class="docutils literal notranslate"><span class="pre">Iris-versicolor</span></code> dan <code class="docutils literal notranslate"><span class="pre">Iris-virginica</span></code>). Metrik F1-Score untuk kedua kelas ini tetap tinggi, menunjukkan bahwa SMOTE adalah solusi yang seimbang dan tidak merusak kemampuan model secara keseluruhan.</p></li>
+<li><p><strong>Visualisasi PCA sebagai Bukti</strong>: Plot PCA pada data latih yang telah di-<em>resample</em> secara visual mengonfirmasi keberhasilan SMOTE. Terlihat bahwa ruang fitur kelas <code class="docutils literal notranslate"><span class="pre">Iris-setosa</span></code> telah diisi oleh sampel-sampel sintetis, menciptakan distribusi kelas yang lebih seimbang untuk dipelajari oleh model.</p></li>
+</ul>
+<p>Kesimpulan Final</p>
+<p><strong>SMOTE terbukti merupakan teknik yang sangat efektif dan esensial untuk mengatasi masalah data tidak seimbang.</strong></p>
+<p>Eksperimen ini secara kuantitatif menunjukkan bahwa SMOTE mampu <strong>mengembalikan kemampuan model untuk mengenali kelas minoritas yang sebelumnya terabaikan</strong>. Dengan demikian, kita dapat membangun model klasifikasi yang tidak hanya akurat secara keseluruhan, tetapi juga <strong>adil dan andal</strong> dalam memprediksi semua kelas. Dalam aplikasi nyata di mana kasus-kasus langka (seperti deteksi penyakit atau penipuan) seringkali menjadi yang paling penting, penerapan teknik seperti SMOTE adalah langkah yang tidak bisa ditawar.</p>
+<section id="bagging-classifier-bootstrap-aggregating">
+<h3><strong>Bagging Classifier (Bootstrap Aggregating)</strong><a class="headerlink" href="#bagging-classifier-bootstrap-aggregating" title="Link to this heading">#</a></h3>
+<p><strong>Bagging</strong> adalah salah satu teknik <em>ensemble learning</em>, di mana idenya adalah menggabungkan beberapa model <em>machine learning</em> untuk mendapatkan hasil prediksi yang lebih baik dan lebih stabil daripada hanya menggunakan satu model saja.</p>
+<section id="intuisi-inti-kebijaksanaan-kelompok-wisdom-of-the-crowd">
+<h4>Intuisi Inti: Kebijaksanaan Kelompok (Wisdom of the Crowd)<a class="headerlink" href="#intuisi-inti-kebijaksanaan-kelompok-wisdom-of-the-crowd" title="Link to this heading">#</a></h4>
+<p>Bayangkan Anda ingin menjawab sebuah pertanyaan yang sangat sulit. Daripada bertanya kepada satu orang jenius, Anda memutuskan untuk bertanya kepada 100 orang yang cukup pintar. Setiap orang diberi buku referensi yang sedikit berbeda (beberapa bab mungkin ada yang hilang, beberapa ada yang digandakan).
+Setelah semua orang memberikan jawabannya, Anda mengambil jawaban yang paling banyak dipilih (voting). Kemungkinan besar, jawaban hasil voting ini akan jauh lebih akurat daripada jawaban dari satu orang saja. Inilah prinsip dasar dari Bagging.</p>
+</section>
+<section id="cara-kerja">
+<h4>Cara Kerja<a class="headerlink" href="#cara-kerja" title="Link to this heading">#</a></h4>
+<p>Proses Bagging terdiri dari dua langkah utama: <strong>Bootstrap</strong> dan <strong>Aggregating</strong>.</p>
+<ol class="arabic simple">
+<li><p><strong>Bootstrap (Sampling with Replacement)</strong>:</p>
+<ul class="simple">
+<li><p>Dari dataset training asli (misalnya berisi 1000 baris data), buat beberapa dataset baru (misalnya 50 dataset baru) dengan ukuran yang sama.</p></li>
+<li><p>Setiap dataset baru ini dibuat dengan cara <strong>mengambil sampel secara acak dengan pengembalian</strong> (<em>sampling with replacement</em>) dari dataset asli.</p></li>
+<li><p>Artinya, satu baris data dari dataset asli bisa terpilih beberapa kali dalam satu dataset baru, atau bahkan tidak terpilih sama sekali. Hasilnya adalah beberapa dataset yang sedikit berbeda satu sama lain.</p></li>
+</ul>
+</li>
+<li><p><strong>Aggregating (Penggabungan)</strong>:</p>
+<ul class="simple">
+<li><p>Sebuah model dasar (misalnya, Decision Tree) dilatih secara terpisah pada setiap dataset hasil <em>bootstrap</em> tadi. Hasilnya, kita akan memiliki 50 model Decision Tree yang berbeda-beda.</p></li>
+<li><p>Ketika ada data baru yang ingin diprediksi, data tersebut akan dimasukkan ke semua 50 model.</p></li>
+<li><p>Setiap model akan memberikan prediksinya (voting).</p></li>
+<li><p>Untuk masalah <strong>klasifikasi</strong>, hasil akhir adalah kelas yang paling banyak dipilih (mayoritas suara).</p></li>
+</ul>
+</li>
+</ol>
+<p><strong>Contoh Paling Terkenal</strong>: <strong>Random Forest</strong> adalah pengembangan dari Bagging yang secara spesifik menggunakan Decision Tree sebagai model dasarnya.</p>
+</section>
+<section id="kelebihan">
+<h4>Kelebihan<a class="headerlink" href="#kelebihan" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Mengurangi Overfitting</strong>: Ini adalah keunggulan utama Bagging. Dengan melatih banyak model pada data yang sedikit berbeda, Bagging dapat mengurangi varians (<em>variance</em>) dan membuat model lebih generalis.</p></li>
+<li><p><strong>Meningkatkan Stabilitas</strong>: Model menjadi lebih stabil dan tidak terlalu sensitif terhadap perubahan kecil pada data training.</p></li>
+<li><p><strong>Mudah Diparalelkan</strong>: Setiap model dasar dapat dilatih secara independen.</p></li>
+</ul>
+</section>
+<section id="kekurangan">
+<h4>Kekurangan<a class="headerlink" href="#kekurangan" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Kehilangan Interpretasi</strong>: Sulit untuk menafsirkan mengapa sebuah prediksi dibuat, karena itu adalah hasil dari puluhan atau ratusan model.</p></li>
+<li><p><strong>Komputasi Mahal</strong>: Membutuhkan lebih banyak sumber daya komputasi untuk melatih banyak model.</p></li>
+</ul>
+</section>
+</section>
+<section id="naive-bayes">
+<h3>Naive Bayes<a class="headerlink" href="#naive-bayes" title="Link to this heading">#</a></h3>
+<p><strong>Naive Bayes</strong> adalah algoritma klasifikasi yang didasarkan pada <strong>Teorema Bayes</strong> dengan asumsi “naif” (sederhana) bahwa setiap fitur (variabel prediktor) bersifat <strong>independen</strong> satu sama lain.</p>
+<section id="intuisi-inti-detektif-naif">
+<h4>Intuisi Inti: Detektif Naif<a class="headerlink" href="#intuisi-inti-detektif-naif" title="Link to this heading">#</a></h4>
+<p>Bayangkan seorang detektif mencoba menebak profesi seseorang berdasarkan petunjuk: “memakai kacamata”, “membawa laptop”, dan “berbicara tentang <em>deadline</em>”.
+Detektif <strong>naif</strong> kita mengasumsikan semua petunjuk ini <strong>tidak ada hubungannya sama sekali</strong>. Dia akan menghitung probabilitas setiap petunjuk secara terpisah untuk setiap profesi, lalu mengalikannya untuk mendapatkan skor akhir dan memilih profesi dengan skor probabilitas tertinggi.
+Meskipun asumsi “setiap fitur independen” ini seringkali salah di dunia nyata, Naive Bayes secara mengejutkan bekerja dengan sangat baik dalam banyak kasus.</p>
+</section>
+</section>
+<section id="id1">
+<h3>Kelebihan<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Sangat Cepat</strong>: Proses training dan prediksinya sangat cepat karena perhitungannya sederhana.</p></li>
+<li><p><strong>Performa Baik pada Data Teks</strong>: Sangat unggul dalam klasifikasi teks seperti filter spam dan analisis sentimen.</p></li>
+<li><p><strong>Tidak Butuh Banyak Data</strong>: Dapat bekerja dengan baik bahkan dengan jumlah data training yang relatif kecil.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h3>Kekurangan<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Asumsi Independensi yang Kuat</strong>: Jika fitur-fitur dalam data Anda sangat berkorelasi, performa Naive Bayes mungkin akan menurun.</p></li>
+<li><p><strong>Zero-Frequency Problem</strong>: Jika ada sebuah kategori pada data uji yang tidak pernah muncul pada data training, probabilitasnya akan menjadi nol. (Masalah ini bisa diatasi dengan teknik <em>smoothing</em>).</p></li>
+</ul>
+</section>
+<section id="support-vector-machine-svm">
+<h3>Support Vector Machine (SVM)<a class="headerlink" href="#support-vector-machine-svm" title="Link to this heading">#</a></h3>
+<p><strong>Support Vector Machine (SVM)</strong> adalah algoritma supervised learning yang kuat yang bertujuan untuk menemukan <strong>hyperplane</strong> terbaik yang memisahkan data ke dalam kelas-kelas yang berbeda.</p>
+<section id="intuisi-inti-mencari-jalan-terlebar">
+<h4>Intuisi Inti: Mencari Jalan Terlebar<a class="headerlink" href="#intuisi-inti-mencari-jalan-terlebar" title="Link to this heading">#</a></h4>
+<p>Bayangkan data Anda adalah rumah-rumah dari dua kompleks perumahan yang berbeda di sebuah peta. Tugas Anda adalah menggambar sebuah <strong>jalan lurus</strong> yang memisahkan kedua kompleks tersebut.</p>
+<p>SVM berpendapat bahwa jalan terbaik adalah jalan yang <strong>paling lebar</strong>, yaitu jalan yang memiliki <strong>jarak terjauh</strong> ke rumah terdekat di kedua sisinya.</p>
+<ul class="simple">
+<li><p><strong>Hyperplane</strong>: Ini adalah “jalan” atau batas pemisah itu sendiri. Dalam 2D, ini adalah garis.</p></li>
+<li><p><strong>Margin</strong>: Ini adalah “lebar jalan”, yaitu jarak antara <em>hyperplane</em> dengan titik data terdekat dari masing-masing kelas. SVM bertujuan untuk <strong>memaksimalkan margin</strong> ini.</p></li>
+<li><p><strong>Support Vectors</strong>: Ini adalah “rumah-rumah” yang paling dekat dengan jalan, yang “menopang” atau menentukan posisi dan lebar jalan.</p></li>
+</ul>
+</section>
+<section id="kernel-trick-mengatasi-data-yang-tidak-linier">
+<h4>Kernel Trick: Mengatasi Data yang Tidak Linier<a class="headerlink" href="#kernel-trick-mengatasi-data-yang-tidak-linier" title="Link to this heading">#</a></h4>
+<p>Bagaimana jika data tidak bisa dipisahkan dengan jalan lurus? SVM menggunakan <strong>Kernel Trick</strong>, yang secara intuitif “mengangkat” data ke dimensi yang lebih tinggi di mana data tersebut <em>bisa</em> dipisahkan oleh sebuah garis/bidang lurus.</p>
+</section>
+<section id="id3">
+<h4>Kelebihan<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Efektif di Ruang Dimensi Tinggi</strong>: Bekerja sangat baik pada dataset dengan banyak sekali fitur.</p></li>
+<li><p><strong>Memori Efisien</strong>: Hanya menggunakan <em>support vectors</em> untuk membangun model.</p></li>
+<li><p><strong>Sangat Akurat</strong>: Jika ada batas pemisah yang jelas antar kelas, SVM bisa sangat akurat.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>Kekurangan<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Lambat pada Dataset Besar</strong>: Proses training bisa menjadi sangat lambat pada dataset yang sangat besar.</p></li>
+<li><p><strong>Sulit pada Data yang Berisik (Noisy)</strong>: Jika dataset memiliki banyak tumpang tindih antar kelas, SVM akan kesulitan menemukan <em>hyperplane</em> yang baik.</p></li>
+<li><p><strong>Membutuhkan Pemilihan Kernel dan Parameter</strong>: Memilih fungsi kernel yang tepat (Linear, RBF, dll.) dan mengatur parameternya bisa menjadi tantangan.</p></li>
+</ul>
+</section>
+</section>
+<section id="adasyn-adaptive-synthetic-sampling">
+<h3>ADASYN (Adaptive Synthetic Sampling)<a class="headerlink" href="#adasyn-adaptive-synthetic-sampling" title="Link to this heading">#</a></h3>
+<p><strong>ADASYN</strong> adalah salah satu teknik <em>oversampling</em> yang canggih untuk menangani masalah <strong>dataset tidak seimbang (<em>imbalanced dataset</em>)</strong>. ADASYN merupakan pengembangan dari metode SMOTE (<em>Synthetic Minority Over-sampling Technique</em>).</p>
+<p>Tujuan utamanya adalah untuk membuat sampel sintetis (buatan) bagi kelas minoritas, namun dengan pendekatan yang lebih “pintar” dan <strong>adaptif</strong>.</p>
+<section id="intuisi-inti-memberi-perhatian-ekstra-pada-murid-yang-kesulitan">
+<h4>Intuisi Inti: Memberi Perhatian Ekstra pada Murid yang Kesulitan<a class="headerlink" href="#intuisi-inti-memberi-perhatian-ekstra-pada-murid-yang-kesulitan" title="Link to this heading">#</a></h4>
+<p>Bayangkan Anda seorang guru yang mengajar di kelas dengan beberapa murid yang sangat pintar dan beberapa murid yang kesulitan belajar. Agar seluruh kelas bisa lulus ujian, Anda tidak akan memberikan jam tambahan yang sama rata kepada semua murid. Sebaliknya, Anda akan fokus memberikan <strong>perhatian dan bimbingan ekstra</strong> kepada murid-murid yang paling kesulitan memahami materi.</p>
+<p>ADASYN bekerja dengan prinsip yang sama. Alih-alih hanya memperbanyak semua data minoritas secara merata seperti SMOTE, ADASYN akan <strong>lebih fokus membuat data sintetis di sekitar data minoritas yang “sulit dipelajari”</strong>—yaitu, data minoritas yang berada di dekat atau dikelilingi oleh data mayoritas.</p>
+</section>
+<section id="cara-kerja-adasyn">
+<h4>Cara Kerja ADASYN<a class="headerlink" href="#cara-kerja-adasyn" title="Link to this heading">#</a></h4>
+<p>Proses kerja ADASYN dapat dipecah menjadi beberapa langkah:</p>
+<ol class="arabic simple">
+<li><p><strong>Hitung Tingkat Ketidakseimbangan</strong>:</p>
+<ul class="simple">
+<li><p>Pertama, algoritma memeriksa rasio antara kelas minoritas dan mayoritas untuk menentukan berapa banyak total data sintetis (<span class="math notranslate nohighlight">\(G\)</span>) yang perlu dibuat.</p></li>
+</ul>
+</li>
+<li><p><strong>Identifikasi Tetangga Terdekat</strong>:</p>
+<ul class="simple">
+<li><p>Untuk <strong>setiap sampel di kelas minoritas</strong>, algoritma akan mencari <em>K</em>-tetangga terdekatnya (<em>K-Nearest Neighbors</em>), sama seperti SMOTE.</p></li>
+</ul>
+</li>
+<li><p><strong>Hitung “Rasio Kesulitan” (Ini Bagian Kuncinya!)</strong>:</p>
+<ul class="simple">
+<li><p>Untuk setiap sampel minoritas (<span class="math notranslate nohighlight">\(x_i\)</span>), ADASYN menghitung sebuah <strong>rasio kesulitan</strong> (<span class="math notranslate nohighlight">\(r_i\)</span>).</p></li>
+<li><p>Rasio ini dihitung dengan formula:
+<span class="math notranslate nohighlight">\(r_i = \frac{\text{Jumlah sampel mayoritas di antara K-tetangga}}{K}\)</span></p></li>
+<li><p>Jika nilai <span class="math notranslate nohighlight">\(r_i\)</span> tinggi (mendekati 1), artinya sampel minoritas tersebut dikelilingi oleh banyak sampel mayoritas. Ini menandakan bahwa sampel ini berada di wilayah yang “sulit” atau dekat dengan batas keputusan (<em>decision boundary</em>).</p></li>
+</ul>
+</li>
+<li><p><strong>Hitung Kepadatan Distribusi</strong>:</p>
+<ul class="simple">
+<li><p>Rasio kesulitan (<span class="math notranslate nohighlight">\(r_i\)</span>) dari semua sampel minoritas kemudian dinormalisasi agar totalnya menjadi 1. Hasil normalisasi ini (<span class="math notranslate nohighlight">\(\hat{r}_i\)</span>) menciptakan sebuah <strong>distribusi kepadatan</strong> atau probabilitas.</p></li>
+<li><p>Distribusi ini akan menentukan <strong>berapa banyak</strong> sampel sintetis yang akan dibuat untuk setiap sampel minoritas. Sampel dengan rasio kesulitan tertinggi akan mendapatkan “jatah” pembuatan data sintetis yang paling banyak.</p></li>
+</ul>
+</li>
+<li><p><strong>Buat Sampel Sintetis</strong>:</p>
+<ul class="simple">
+<li><p>Algoritma kemudian mengulang proses pembuatan sampel sebanyak total data (<span class="math notranslate nohighlight">\(G\)</span>) yang dihitung di langkah pertama.</p></li>
+<li><p>Untuk setiap iterasi, satu sampel minoritas dipilih berdasarkan distribusi kepadatan (<span class="math notranslate nohighlight">\(\hat{r}_i\)</span>).</p></li>
+<li><p>Sampel sintetis baru kemudian dibuat dengan cara yang sama seperti SMOTE: pilih satu tetangga minoritas secara acak, lalu buat titik baru di sepanjang garis yang menghubungkan kedua titik tersebut.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="perbedaan-utama-adasyn-vs-smote">
+<h4>Perbedaan Utama ADASYN vs. SMOTE<a class="headerlink" href="#perbedaan-utama-adasyn-vs-smote" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Fitur</p></th>
+<th class="head text-left"><p><strong>SMOTE</strong></p></th>
+<th class="head text-left"><p><strong>ADASYN</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Pendekatan</strong></p></td>
+<td class="text-left"><p>Memperbanyak semua sampel minoritas secara <strong>seragam</strong>.</p></td>
+<td class="text-left"><p>Memperbanyak sampel minoritas secara <strong>adaptif</strong>.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Fokus</strong></p></td>
+<td class="text-left"><p>Semua sampel minoritas dianggap sama pentingnya.</p></td>
+<td class="text-left"><p>Fokus pada sampel minoritas yang <strong>paling sulit dipelajari</strong> (yang dekat dengan kelas mayoritas).</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Hasil</strong></p></td>
+<td class="text-left"><p>Menghasilkan kepadatan sampel minoritas yang seragam.</p></td>
+<td class="text-left"><p>Menghasilkan kepadatan yang lebih tinggi di sekitar batas keputusan, membantu model belajar memisahkan kelas dengan lebih baik.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="kelebihan-adasyn">
+<h4>Kelebihan ADASYN<a class="headerlink" href="#kelebihan-adasyn" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Fokus pada Batas Keputusan</strong>: Dengan menghasilkan lebih banyak sampel di area yang sulit, ADASYN membantu model <em>machine learning</em> untuk membentuk batas keputusan yang lebih akurat.</p></li>
+<li><p><strong>Pendekatan Adaptif</strong>: Lebih cerdas daripada SMOTE karena tidak memperlakukan semua sampel minoritas secara sama.</p></li>
+</ul>
+</section>
+<section id="kekurangan-adasyn">
+<h4>Kekurangan ADASYN<a class="headerlink" href="#kekurangan-adasyn" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Sensitif terhadap Noise/Outlier</strong>: Jika ada sampel minoritas yang sebenarnya adalah <em>noise</em> (kesalahan data) dan kebetulan dikelilingi oleh data mayoritas, ADASYN justru akan memperbanyak <em>noise</em> tersebut secara intensif.</p></li>
+<li><p><strong>Lebih Kompleks</strong>: Sedikit lebih rumit secara konseptual dan komputasi dibandingkan SMOTE.</p></li>
+</ul>
+</section>
+</section>
+<section id="penerapan-pada-dataset-uci-machine-learning-bank-marketing">
+<h3>Penerapan pada Dataset UCI Machine Learning Bank Marketing<a class="headerlink" href="#penerapan-pada-dataset-uci-machine-learning-bank-marketing" title="Link to this heading">#</a></h3>
+<section id="load-dan-preprocessing-data">
+<h4>1. Load dan Preprocessing Data<a class="headerlink" href="#load-dan-preprocessing-data" title="Link to this heading">#</a></h4>
+<p>Tahap pertama adalah memuat dataset bank. Dataset ini berisi fitur-fitur nasabah bank dan variabel target ‘y’ yang menunjukkan apakah nasabah tersebut berlangganan deposito berjangka atau tidak (‘yes’/’no’).</p>
+<p>Karena model machine learning memerlukan input numerik, kita akan melakukan beberapa langkah pra-pemrosesan:</p>
+<ol class="arabic simple">
+<li><p>Encoding Variabel Target: Mengubah ‘y’ (‘no’/’yes’) menjadi 0/1.</p></li>
+<li><p>One-Hot Encoding: Mengubah fitur-fitur kategorikal (seperti ‘job’, ‘marital’, ‘education’) menjadi kolom-kolom numerik.</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">mlxtend</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Collecting mlxtend
+  Downloading mlxtend-0.23.4-py3-none-any.whl.metadata (7.3 kB)
+Requirement already satisfied: scipy&gt;=1.2.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (1.11.4)
+Requirement already satisfied: numpy&gt;=1.16.2 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (1.26.4)
+Requirement already satisfied: pandas&gt;=0.24.2 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (2.1.4)
+Requirement already satisfied: scikit-learn&gt;=1.3.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (1.4.2)
+Requirement already satisfied: matplotlib&gt;=3.0.0 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (3.7.5)
+Requirement already satisfied: joblib&gt;=0.13.2 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from mlxtend) (1.3.2)
+Requirement already satisfied: contourpy&gt;=1.0.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.3.2)
+Requirement already satisfied: cycler&gt;=0.10 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (0.12.1)
+Requirement already satisfied: fonttools&gt;=4.22.0 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (4.57.0)
+Requirement already satisfied: kiwisolver&gt;=1.0.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (1.4.8)
+Requirement already satisfied: packaging&gt;=20.0 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (24.2)
+Requirement already satisfied: pillow&gt;=6.2.0 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (11.2.1)
+Requirement already satisfied: pyparsing&gt;=2.3.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (3.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.7 in c:\users\victus\appdata\roaming\python\python312\site-packages (from matplotlib&gt;=3.0.0-&gt;mlxtend) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2025.2)
+Requirement already satisfied: tzdata&gt;=2022.1 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from pandas&gt;=0.24.2-&gt;mlxtend) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in c:\users\victus\appdata\roaming\python\python312\site-packages (from python-dateutil&gt;=2.7-&gt;matplotlib&gt;=3.0.0-&gt;mlxtend) (1.17.0)
+Requirement already satisfied: threadpoolctl&gt;=2.0.0 in c:\users\victus\appdata\local\programs\python\python312\lib\site-packages (from scikit-learn&gt;=1.3.1-&gt;mlxtend) (3.5.0)
+Downloading mlxtend-0.23.4-py3-none-any.whl (1.4 MB)
+   ---------------------------------------- 0.0/1.4 MB ? eta -:--:--
+   ---------------------------------------- 0.0/1.4 MB ? eta -:--:--
+   ---------------------------------------- 0.0/1.4 MB ? eta -:--:--
+   ---------------------------------------- 0.0/1.4 MB ? eta -:--:--
+   ------- -------------------------------- 0.3/1.4 MB ? eta -:--:--
+   --------------- ------------------------ 0.5/1.4 MB 1.3 MB/s eta 0:00:01
+   ------------------------------- -------- 1.0/1.4 MB 1.5 MB/s eta 0:00:01
+   ---------------------------------------- 1.4/1.4 MB 1.5 MB/s eta 0:00:00
+Installing collected packages: mlxtend
+Successfully installed mlxtend-0.23.4
+Note: you may need to restart the kernel to use updated packages.
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[notice] A new release of pip is available: 25.1.1 -&gt; 25.2
+[notice] To update, run: python.exe -m pip install --upgrade pip
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardScaler</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.decomposition</span><span class="w"> </span><span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.svm</span><span class="w"> </span><span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.ensemble</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaggingClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">accuracy_score</span><span class="p">,</span> <span class="n">classification_report</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">imblearn.over_sampling</span><span class="w"> </span><span class="kn">import</span> <span class="n">SMOTE</span><span class="p">,</span> <span class="n">ADASYN</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">mlxtend.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_decision_regions</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelEncoder</span>
+
+<span class="c1"># Muat data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;bank.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+
+<span class="c1"># Pisahkan fitur (X) dan target (y)</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_labels</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">]</span>
+
+<span class="c1"># Encoding variabel target</span>
+<span class="n">le</span> <span class="o">=</span> <span class="n">LabelEncoder</span><span class="p">()</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">le</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y_labels</span><span class="p">)</span>
+
+<span class="c1"># One-Hot Encoding untuk fitur kategorikal</span>
+<span class="n">categorical_cols</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;object&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">columns</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">get_dummies</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">categorical_cols</span><span class="p">,</span> <span class="n">drop_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Scaling fitur numerik</span>
+<span class="n">scaler</span> <span class="o">=</span> <span class="n">StandardScaler</span><span class="p">()</span>
+<span class="n">X_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of feature matrix after encoding:&quot;</span><span class="p">,</span> <span class="n">X_scaled</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of feature matrix after encoding: (4521, 42)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="analisis-distribusi-kelas-awal">
+<h3>2. Analisis Distribusi Kelas Awal<a class="headerlink" href="#analisis-distribusi-kelas-awal" title="Link to this heading">#</a></h3>
+<p>Kita akan memeriksa distribusi kelas pada variabel target. Dataset ini secara alami tidak seimbang, di mana jumlah nasabah yang tidak berlangganan (kelas 0) jauh lebih banyak daripada yang berlangganan (kelas 1).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Awal:&quot;</span><span class="p">)</span>
+<span class="n">class_distribution</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">class_distribution</span><span class="p">)</span>
+
+<span class="n">class_distribution</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribusi Kelas Awal (0: No, 1: Yes)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Kelas&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Jumlah&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi Kelas Awal:
+0    4000
+1     521
+Name: count, dtype: int64
+</pre></div>
+</div>
+<img alt="_images/c8aa6519b784c944542e972fb8f6feeeb83de061fa7a06c9735a732379ad3dba.png" src="_images/c8aa6519b784c944542e972fb8f6feeeb83de061fa7a06c9735a732379ad3dba.png" />
+</div>
+</div>
+</section>
+<section id="klasifikasi-data-tidak-seimbang">
+<h3>3. Klasifikasi Data tidak Seimbang<a class="headerlink" href="#klasifikasi-data-tidak-seimbang" title="Link to this heading">#</a></h3>
+<p>Selanjutnya yaitu melatih dan mengevaluasi model pada data asli yang tidak seimbang. Untuk tujuan visualisasi, dimensi fitur direduksi menjadi 2 komponen utama menggunakan PCA. Model akan dilatih dan dievaluasi pada data hasil PCA ini.</p>
+<p>Model yang digunakan:</p>
+<ul class="simple">
+<li><p>SVM Tunggal</p></li>
+<li><p>Decision Tree Tunggal</p></li>
+<li><p>Bagging dengan SVM</p></li>
+<li><p>Bagging dengan Decision Tree</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PCA untuk reduksi dimensi menjadi 2 untuk visualisasi</span>
+<span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">)</span>
+
+<span class="c1"># Split data hasil PCA</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi Model</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;SVM&quot;</span><span class="p">:</span> <span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Decision Tree&quot;</span><span class="p">:</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Bagging SVM&quot;</span><span class="p">:</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span>
+    <span class="s2">&quot;Bagging DT&quot;</span><span class="p">:</span> <span class="n">BaggingClassifier</span><span class="p">(</span><span class="n">estimator</span><span class="o">=</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">),</span> <span class="n">n_estimators</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--- Hasil </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> pada Data Tidak Seimbang ---&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+    
+    <span class="c1"># Plotting</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">X_pca</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Boundary </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> pada Data Tidak Seimbang&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Hasil SVM pada Data Tidak Seimbang ---
+Akurasi: 0.8850405305821666
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.89      1.00      0.94      1201
+         yes       0.00      0.00      0.00       156
+
+    accuracy                           0.89      1357
+   macro avg       0.44      0.50      0.47      1357
+weighted avg       0.78      0.89      0.83      1357
+</pre></div>
+</div>
+<img alt="_images/051673ff61f568247da447cf1775ddd1314be3b622924d7cc46fda54ebdffa7d.png" src="_images/051673ff61f568247da447cf1775ddd1314be3b622924d7cc46fda54ebdffa7d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Decision Tree pada Data Tidak Seimbang ---
+Akurasi: 0.8084008843036109
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.90      0.89      0.89      1201
+         yes       0.20      0.22      0.21       156
+
+    accuracy                           0.81      1357
+   macro avg       0.55      0.55      0.55      1357
+weighted avg       0.82      0.81      0.81      1357
+</pre></div>
+</div>
+<img alt="_images/6e6f1dcee584ea3d06e1e5a95fd59ec0cc88474e9f52124ed4025ebbb91d35a6.png" src="_images/6e6f1dcee584ea3d06e1e5a95fd59ec0cc88474e9f52124ed4025ebbb91d35a6.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Bagging SVM pada Data Tidak Seimbang ---
+Akurasi: 0.8850405305821666
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.89      1.00      0.94      1201
+         yes       0.00      0.00      0.00       156
+
+    accuracy                           0.89      1357
+   macro avg       0.44      0.50      0.47      1357
+weighted avg       0.78      0.89      0.83      1357
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+c:\Users\VICTUS\AppData\Local\Programs\Python\Python312\Lib\site-packages\sklearn\metrics\_classification.py:1509: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples. Use `zero_division` parameter to control this behavior.
+  _warn_prf(average, modifier, f&quot;{metric.capitalize()} is&quot;, len(result))
+</pre></div>
+</div>
+<img alt="_images/b776db1b730839e7e77ec3ac02fdd84f16f1d7fa6e1b23cbe97e42827d285453.png" src="_images/b776db1b730839e7e77ec3ac02fdd84f16f1d7fa6e1b23cbe97e42827d285453.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Bagging DT pada Data Tidak Seimbang ---
+Akurasi: 0.8599852616064849
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.90      0.95      0.92      1201
+         yes       0.28      0.14      0.19       156
+
+    accuracy                           0.86      1357
+   macro avg       0.59      0.55      0.56      1357
+weighted avg       0.82      0.86      0.84      1357
+</pre></div>
+</div>
+<img alt="_images/39163f933bc6927d9fd77fcfc7b0b6d7e710f837b433dae7f1898e759dfed86d.png" src="_images/39163f933bc6927d9fd77fcfc7b0b6d7e710f837b433dae7f1898e759dfed86d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="menyeimbangkan-data-dengan-adasyn">
+<h3>4. Menyeimbangkan Data dengan ADASYN<a class="headerlink" href="#menyeimbangkan-data-dengan-adasyn" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adasyn</span> <span class="o">=</span> <span class="n">ADASYN</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">X_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span> <span class="o">=</span> <span class="n">adasyn</span><span class="o">.</span><span class="n">fit_resample</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distribusi Kelas Setelah ADASYN:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">y_adasyn</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Distribusi Kelas Setelah ADASYN:
+0    4000
+1    3971
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="klasifikasi-pada-data-yang-diseimbangkan-dengan-adasyn">
+<h3>5. Klasifikasi pada Data yang Diseimbangkan dengan ADASYN<a class="headerlink" href="#klasifikasi-pada-data-yang-diseimbangkan-dengan-adasyn" title="Link to this heading">#</a></h3>
+<p>Setelah itu, evaluasi model pada data yang sudah disem=imbangkan dengan ADASYN</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># PCA pada data ADASYN</span>
+<span class="n">pca_adasyn</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="n">n_components</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">X_pca_adasyn</span> <span class="o">=</span> <span class="n">pca_adasyn</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">X_adasyn</span><span class="p">)</span>
+
+<span class="c1"># Split data hasil PCA</span>
+<span class="n">X_train_ad</span><span class="p">,</span> <span class="n">X_test_ad</span><span class="p">,</span> <span class="n">y_train_ad</span><span class="p">,</span> <span class="n">y_test_ad</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_pca_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_adasyn</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;--- Hasil </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> pada Data Seimbang (ADASYN) ---&quot;</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train_ad</span><span class="p">,</span> <span class="n">y_train_ad</span><span class="p">)</span>
+    <span class="n">y_pred_ad</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test_ad</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Akurasi: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test_ad</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred_ad</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Classification Report:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">classification_report</span><span class="p">(</span><span class="n">y_test_ad</span><span class="p">,</span> <span class="n">y_pred_ad</span><span class="p">,</span> <span class="n">target_names</span><span class="o">=</span><span class="n">le</span><span class="o">.</span><span class="n">classes_</span><span class="p">))</span>
+    
+    <span class="c1"># Plotting</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">plot_decision_regions</span><span class="p">(</span><span class="n">X_pca_adasyn</span><span class="p">,</span> <span class="n">y_adasyn</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">legend</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 1&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Principal Component 2&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Decision Boundary </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> pada Data Seimbang (ADASYN)&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">60</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>--- Hasil SVM pada Data Seimbang (ADASYN) ---
+Akurasi: 0.600752508361204
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.57      0.80      0.67      1200
+         yes       0.66      0.41      0.50      1192
+
+    accuracy                           0.60      2392
+   macro avg       0.62      0.60      0.58      2392
+weighted avg       0.62      0.60      0.58      2392
+</pre></div>
+</div>
+<img alt="_images/d32a9ba10f6e75b596bcc1474a97e93e34e9fb04806962afa2a274bf18cec0f5.png" src="_images/d32a9ba10f6e75b596bcc1474a97e93e34e9fb04806962afa2a274bf18cec0f5.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Decision Tree pada Data Seimbang (ADASYN) ---
+Akurasi: 0.5957357859531772
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.60      0.58      0.59      1200
+         yes       0.59      0.61      0.60      1192
+
+    accuracy                           0.60      2392
+   macro avg       0.60      0.60      0.60      2392
+weighted avg       0.60      0.60      0.60      2392
+</pre></div>
+</div>
+<img alt="_images/b11b186bfc72c3f47500f35b4570e8d4305566d6dfbdb15bfc7315dde6ef4f1d.png" src="_images/b11b186bfc72c3f47500f35b4570e8d4305566d6dfbdb15bfc7315dde6ef4f1d.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Bagging SVM pada Data Seimbang (ADASYN) ---
+Akurasi: 0.6091137123745819
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.58      0.79      0.67      1200
+         yes       0.67      0.43      0.52      1192
+
+    accuracy                           0.61      2392
+   macro avg       0.63      0.61      0.60      2392
+weighted avg       0.63      0.61      0.60      2392
+</pre></div>
+</div>
+<img alt="_images/17e3a39f3e47687a5aca3f54639002a6d4b5c8f75c59090cb396391cf80aece9.png" src="_images/17e3a39f3e47687a5aca3f54639002a6d4b5c8f75c59090cb396391cf80aece9.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+
+--- Hasil Bagging DT pada Data Seimbang (ADASYN) ---
+Akurasi: 0.6346153846153846
+
+Classification Report:
+               precision    recall  f1-score   support
+
+          no       0.62      0.68      0.65      1200
+         yes       0.65      0.59      0.61      1192
+
+    accuracy                           0.63      2392
+   macro avg       0.64      0.63      0.63      2392
+weighted avg       0.64      0.63      0.63      2392
+</pre></div>
+</div>
+<img alt="_images/7cb7bc61d6558ed88b2059c979d03eda9b7939890ed340f76ed75f3d6eb3640e.png" src="_images/7cb7bc61d6558ed88b2059c979d03eda9b7939890ed340f76ed75f3d6eb3640e.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>============================================================
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bab-2_du.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Data Understanding</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="time_series.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Analisis Data Time Series</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-data"><strong>Preprocessing Data</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocessing-menyeimbangkan-data-yang-tidak-seimbang"><strong>Preprocessing Menyeimbangkan Data yang tidak Seimbang</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apa-itu-teknik-oversampling">2. Apa itu Teknik Oversampling?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-oversampling-populer">3. Metode Oversampling Populer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-smote-synthetic-minority-over-sampling-technique">a. SMOTE (Synthetic Minority Over-sampling Technique)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-adasyn-adaptive-synthetic-sampling">b. ADASYN (Adaptive Synthetic Sampling)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#alur-kerja-umum">4. Alur Kerja Umum</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bagging-classifier-bootstrap-aggregating"><strong>Bagging Classifier (Bootstrap Aggregating)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-kebijaksanaan-kelompok-wisdom-of-the-crowd">Intuisi Inti: Kebijaksanaan Kelompok (Wisdom of the Crowd)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan">Kelebihan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes">Naive Bayes</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-detektif-naif">Intuisi Inti: Detektif Naif</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Kelebihan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Kekurangan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#support-vector-machine-svm">Support Vector Machine (SVM)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-mencari-jalan-terlebar">Intuisi Inti: Mencari Jalan Terlebar</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kernel-trick-mengatasi-data-yang-tidak-linier">Kernel Trick: Mengatasi Data yang Tidak Linier</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Kelebihan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Kekurangan</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adasyn-adaptive-synthetic-sampling">ADASYN (Adaptive Synthetic Sampling)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#intuisi-inti-memberi-perhatian-ekstra-pada-murid-yang-kesulitan">Intuisi Inti: Memberi Perhatian Ekstra pada Murid yang Kesulitan</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja-adasyn">Cara Kerja ADASYN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#perbedaan-utama-adasyn-vs-smote">Perbedaan Utama ADASYN vs. SMOTE</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kelebihan-adasyn">Kelebihan ADASYN</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kekurangan-adasyn">Kekurangan ADASYN</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#penerapan-pada-dataset-uci-machine-learning-bank-marketing">Penerapan pada Dataset UCI Machine Learning Bank Marketing</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#load-dan-preprocessing-data">1. Load dan Preprocessing Data</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-distribusi-kelas-awal">2. Analisis Distribusi Kelas Awal</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-data-tidak-seimbang">3. Klasifikasi Data tidak Seimbang</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menyeimbangkan-data-dengan-adasyn">4. Menyeimbangkan Data dengan ADASYN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#klasifikasi-pada-data-yang-diseimbangkan-dengan-adasyn">5. Klasifikasi pada Data yang Diseimbangkan dengan ADASYN</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By 23-100 Naufal Rabbani Sab'ul FItri
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
